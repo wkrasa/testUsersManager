@@ -1,0 +1,15 @@
+{
+  "name": "test-users-manager",
+  "version": "0.0.0",
+  "description": "testUsersManager",
+  "main": "app.js",
+  "author": {
+    "name": "WKrasa",
+    "email": ""
+  },
+  "dependencies": {
+    "express": "3.4.4",
+    "jade": "*",
+    "stylus": "*"
+  }
+}
