@@ -8,6 +8,7 @@ html
     link(rel='stylesheet', type='text/css', href='/stylesheets/style.css')
     script(src='/javascripts/modernizr-2.6.2.js')
   body
+    h2 User logged in: #{isLoggedIn}
     .navbar.navbar-inverse.navbar-fixed-top
       .container
         .navbar-header
@@ -33,5 +34,6 @@ html
     script(src='/javascripts/jquery-1.10.2.js')
     script(src='/javascripts/bootstrap.js')
     script(src='/javascripts/respond.js')
-
+    script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js')
+    script(src='/javascripts/app/myApp.js')
     block scripts
