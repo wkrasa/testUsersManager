@@ -6,6 +6,7 @@
 var express = require('express');
 var http = require('http');
 var path = require('path');
+var lessMiddleware = require("less-middleware");
 
 var app = express();
 
@@ -23,7 +24,12 @@ app.use(express.cookieParser());
 
 app.use(express.session({ secret: '1234567890QWERTY', cookie: { maxAge: 60000 } }));
 app.use(app.router);
-app.use(require('stylus').middleware(path.join(__dirname, 'public')));
+//app.use(require('stylus').middleware(path.join(__dirname, 'public')));
+app.use(lessMiddleware(path.join(__dirname, 'public'), {
+    debug: true,
+    //dest: __dirname,
+    force: true
+}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 
