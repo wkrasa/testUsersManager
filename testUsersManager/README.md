@@ -1,4 +1,6 @@
 ﻿- login mechanism
+-- cookie login
+-- check why passport doesn't work, when login or password is empty
 - domain model
 - db connection menagement (mongoose)
 - less
@@ -8,6 +10,7 @@
 - mvc mechanism (controllers)
 - request addres parsing + mapping to controllers
 - REST service
+- client side validation
 
 - users menagment app
 -- crud for users

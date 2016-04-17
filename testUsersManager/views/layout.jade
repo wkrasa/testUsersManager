@@ -25,10 +25,12 @@ html
               a(href='/about') About
             li
               a(href='/contact') Contact
-            li
-              a(href='/login') Login
-            li
-              a(href='/logout') Logout
+            if userName == false
+              li
+                a(href='/login') Login
+            if userName
+              li
+                a(href='/logout') Logout #{userName}
     .container.body-content
       block content
       hr
