@@ -8,7 +8,7 @@ html
     link(rel='stylesheet', type='text/css', href='/stylesheets/style.css')
     script(src='/javascripts/modernizr-2.6.2.js')
   body
-    h2 User logged in: #{isLoggedIn}
+    h2 User logged in: #{userName}
     .navbar.navbar-inverse.navbar-fixed-top
       .container
         .navbar-header
@@ -25,6 +25,10 @@ html
               a(href='/about') About
             li
               a(href='/contact') Contact
+            li
+              a(href='/login') Login
+            li
+              a(href='/logout') Logout
     .container.body-content
       block content
       hr
