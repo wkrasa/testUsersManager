@@ -32,9 +32,11 @@
   <ItemGroup>
     <Compile Include="app.js" />
     <Content Include="public\javascripts\app\myApp.js" />
+    <Compile Include="passport\rememberMe.js" />
     <Compile Include="passport\signup.js" />
     <Compile Include="passport\login.js" />
     <Compile Include="passport\init.js" />
+    <Compile Include="passport\token.js" />
     <Compile Include="routes\index.js" />
   </ItemGroup>
   <ItemGroup>

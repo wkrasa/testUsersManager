@@ -46,5 +46,6 @@ exports.loginForm = function (req, res) {
 
 exports.logout = function (req, res) {
     req.logout();
+    res.clearCookie("remember_me");
     res.redirect('/');
 };

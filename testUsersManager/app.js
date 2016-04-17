@@ -8,6 +8,7 @@ var http = require('http');
 var path = require('path');
 var lessMiddleware = require("less-middleware");
 var passport = require('passport');
+var tokenMgr = require('./passport/token');
 
 var isAuthenticated = function (req, res, next) {
     // if user is authenticated in the session, call the next() to call the next request handler 
@@ -36,6 +37,7 @@ app.use(express.cookieParser());
 app.use(express.session({ secret: '1234567890QWERTY', cookie: { maxAge: 60000 } }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(passport.authenticate('remember-me'));
 
 var flash = require('connect-flash');
 app.use(flash());
@@ -72,12 +74,27 @@ app.get('/contact', routes.contact);
 app.get('/login', routes.loginForm);
 //app.post('/login', routes.loginPost);
 app.post('/login', passport.authenticate('login', {
-    successRedirect: '/',
-    failureRedirect: '/login',
-    failureFlash : true
-}));
+        //successRedirect: '/',
+        failureRedirect: '/login',
+        failureFlash : true
+    }), 
+    function (req, res, next) {
+        // issue a remember me cookie if the option was checked
+        if (!req.body.rememberMe) { return next(); }
+    
+        var token = tokenMgr.generateToken(64);
+        tokenMgr.saveRememberMeToken(token, req.user, function (err) {
+            if (err) { return done(err); }
+        res.cookie('remember_me', token, { path: '/', httpOnly: true, maxAge: 604800000 }); // 7 days
+        res.cookie('remember_me2', token, { path: '/', httpOnly: true, maxAge: 604800000 }); // 7 days
+            return next();
+        });
+    }, 
+    function (req, res) {   
+        res.redirect('/');
+    });
 app.get('/logout', routes.logout);
 
 http.createServer(app).listen(app.get('port'), function () {
-    console.log('Express server listening on port ' + app.get('port'));
+    console.log('Express server listening on port ' + app.get('port')); 
 });
