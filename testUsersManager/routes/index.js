@@ -1,10 +1,10 @@
-﻿
+﻿var tokenMgr = require('../passport/token');
 
 /*
  * GET home page.
  */
 
-exports.index = function (req, res) {
+exports.index = function (req, res, next) {
     console.log(req.session);
     var login = "";
     if (req.user) { login = req.user.login; }
@@ -12,7 +12,7 @@ exports.index = function (req, res) {
         title: 'Express',
         year: new Date().getFullYear(),
         userName: login
-    });
+	});
 };
 
 exports.about = function (req, res) {
@@ -42,6 +42,20 @@ exports.loginForm = function (req, res) {
         login: req.flash('login'),
         message: req.flash('message')
     });
+};
+
+
+exports.loginPost = function (req, res, next) {
+	// issue a remember me cookie if the option was checked
+	if (!req.body.rememberMe) { return next(); }
+	
+	var token = tokenMgr.generateToken(64);
+	tokenMgr.saveRememberMeToken(token, req.user, function (err) {
+		if (err) { return done(err); }
+		res.cookie('remember_me', token, { path: '/', httpOnly: true, maxAge: 604800000 }); // 7 days
+		res.cookie('remember_me2', token, { path: '/', httpOnly: true, maxAge: 604800000 }); // 7 days
+		return next();
+	});
 };
 
 exports.logout = function (req, res) {

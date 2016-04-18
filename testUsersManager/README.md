@@ -1,6 +1,7 @@
-﻿- login mechanism
--- cookie login
+﻿+ login mechanism
++- cookie login
 -- check why passport doesn't work, when login or password is empty
+- config file
 - domain model
 - db connection menagement (mongoose)
 - less

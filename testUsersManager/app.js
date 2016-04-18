@@ -2,20 +2,36 @@
 /**
  * Module dependencies.
  */
-
+var config = require('./config');
 var express = require('express');
 var http = require('http');
 var path = require('path');
 var lessMiddleware = require("less-middleware");
 var passport = require('passport');
 var tokenMgr = require('./passport/token');
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
+require('./domain/user.js');
+var User = mongoose.model('User');
+
+mongoose.connect(config.dbConnectionString);
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+
+db.once('open', function () {
+	console.log('connected to: ' + config.dbConnectionString);
+});
+User.find({}, function (err, res) {
+
+});
 
 var isAuthenticated = function (req, res, next) {
     // if user is authenticated in the session, call the next() to call the next request handler 
     // Passport adds this method to request object. A middleware is allowed to add properties to
     // request and response objects
-    if (req.isAuthenticated())
-        return next();
+	if (req.isAuthenticated()) {
+		return next();
+	}
     // if the user is not authenticated then redirect him to the login page
     res.redirect('/login');
 }
@@ -34,7 +50,7 @@ app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(express.cookieParser());
 
-app.use(express.session({ secret: '1234567890QWERTY', cookie: { maxAge: 60000 } }));
+app.use(express.session({ secret: tokenMgr.generateToken(32), cookie: { maxAge: 60000 } }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(passport.authenticate('remember-me'));
@@ -78,18 +94,7 @@ app.post('/login', passport.authenticate('login', {
         failureRedirect: '/login',
         failureFlash : true
     }), 
-    function (req, res, next) {
-        // issue a remember me cookie if the option was checked
-        if (!req.body.rememberMe) { return next(); }
-    
-        var token = tokenMgr.generateToken(64);
-        tokenMgr.saveRememberMeToken(token, req.user, function (err) {
-            if (err) { return done(err); }
-        res.cookie('remember_me', token, { path: '/', httpOnly: true, maxAge: 604800000 }); // 7 days
-        res.cookie('remember_me2', token, { path: '/', httpOnly: true, maxAge: 604800000 }); // 7 days
-            return next();
-        });
-    }, 
+	routes.loginPost, 
     function (req, res) {   
         res.redirect('/');
     });

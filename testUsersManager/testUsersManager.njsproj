@@ -32,6 +32,8 @@
   <ItemGroup>
     <Compile Include="app.js" />
     <Content Include="public\javascripts\app\myApp.js" />
+    <Compile Include="config.js" />
+    <Compile Include="domain\user.js" />
     <Compile Include="passport\rememberMe.js" />
     <Compile Include="passport\signup.js" />
     <Compile Include="passport\login.js" />
