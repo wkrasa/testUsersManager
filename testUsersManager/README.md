@@ -12,6 +12,7 @@
 - request addres parsing + mapping to controllers
 - REST service
 - client side validation
+- server validation mechanism
 
 - users menagment app
 -- crud for users

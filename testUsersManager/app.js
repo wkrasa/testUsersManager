@@ -2,7 +2,7 @@
 /**
  * Module dependencies.
  */
-var config = require('./config');
+var config = require('./config')('dev');
 var express = require('express');
 var http = require('http');
 var path = require('path');
@@ -21,9 +21,9 @@ db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function () {
 	console.log('connected to: ' + config.dbConnectionString);
 });
-User.find({}, function (err, res) {
+//User.find({}, function (err, res) {
 
-});
+//});
 
 var isAuthenticated = function (req, res, next) {
     // if user is authenticated in the session, call the next() to call the next request handler 
@@ -39,8 +39,8 @@ var isAuthenticated = function (req, res, next) {
 var app = express();
 
 // all environments
-app.set('port', process.env.PORT || 3000);
-app.set('views', path.join(__dirname, 'views'));
+app.set('port', config.expressPort);
+app.set('views', path.join(__dirname, config.viewsFolder));
 app.set('view engine', 'jade');
 app.use(express.favicon());
 app.use(express.logger('dev'));
@@ -63,11 +63,11 @@ initPassport(passport);
 
 app.use(app.router);
 //app.use(require('stylus').middleware(path.join(__dirname, 'public')));
-app.use(lessMiddleware(path.join(__dirname, 'public'), {
+app.use(lessMiddleware(path.join(__dirname, config.publicFolder), {
     debug: 'development' == app.get('env'),
     force: true
 }));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, config.publicFolder)));
 
 
 var routes = require('./routes');
