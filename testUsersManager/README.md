@@ -18,6 +18,8 @@
 -- crud for users
 -- crud for groups
 
+-tests: see http://code.tutsplus.com/tutorials/build-a-complete-mvc-website-with-expressjs--net-34168
+
 
 
 

@@ -5,7 +5,6 @@
  */
 
 exports.index = function (req, res, next) {
-    console.log(req.session);
     var login = "";
     if (req.user) { login = req.user.login; }
     res.render('index', {
