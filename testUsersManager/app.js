@@ -14,13 +14,13 @@ var Schema = mongoose.Schema;
 require('./domain/user.js');
 var User = mongoose.model('User');
 
-mongoose.connect(config.dbConnectionString);
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
+//mongoose.connect(config.dbConnectionString);
+//var db = mongoose.connection;
+//db.on('error', console.error.bind(console, 'connection error:'));
 
-db.once('open', function () {
-	console.log('connected to: ' + config.dbConnectionString);
-});
+//db.once('open', function () {
+//	console.log('connected to: ' + config.dbConnectionString);
+//});
 //User.find({}, function (err, res) {
 
 //});
@@ -84,11 +84,12 @@ app.use(function (req, res, next) {
     next(err);
 });
 
+app.get('/views/:ctrl/:view', routes.view);
 app.get('/', routes.index);
-app.get('/about', isAuthenticated, routes.about);
-app.get('/contact', routes.contact);
-app.get('/login', routes.loginForm);
-//app.post('/login', routes.loginPost);
+//app.get('/home', routes.home);
+//app.get('/about', isAuthenticated, routes.about);
+//app.get('/contact', routes.contact);
+//app.get('/login', routes.loginForm);
 app.post('/login', passport.authenticate('login', {
         //successRedirect: '/',
         failureRedirect: '/login',

@@ -14,34 +14,44 @@ exports.index = function (req, res, next) {
 	});
 };
 
-exports.about = function (req, res) {
-    var login = "";
-    if (req.user) { login = req.user.login; }
-    res.render('about', {
-        title: 'About',
-        year: new Date().getFullYear(),
-        message: 'Your application description page',
-        userName: login
-    });
-};
+//exports.home = function (req, res, next) {
+//    var login = "";
+//    if (req.user) { login = req.user.login; }
+//    res.render('home', {
+//        title: 'Express',
+//        year: new Date().getFullYear(),
+//        userName: login
+//    });
+//};
 
-exports.contact = function (req, res) {
-    var login = "";
-    if (req.user) { login = req.user.login; }
-    res.render('contact', {
-        title: 'Contact',
-        year: new Date().getFullYear(),
-        message: 'Your contact page',
-        userName: login
-    });
-};
+//exports.about = function (req, res) {
+//    var login = "";
+//    if (req.user) { login = req.user.login; }
+//    res.render('about', {
+//        title: 'About',
+//        year: new Date().getFullYear(),
+//        message: 'Your application description page',
+//        userName: login
+//    });
+//};
 
-exports.loginForm = function (req, res) {
-    res.render('login', {
-        login: req.flash('login'),
-        message: req.flash('message')
-    });
-};
+//exports.contact = function (req, res) {
+//    var login = "";
+//    if (req.user) { login = req.user.login; }
+//    res.render('contact', {
+//        title: 'Contact',
+//        year: new Date().getFullYear(),
+//        message: 'Your contact page',
+//        userName: login
+//    });
+//};
+
+//exports.loginForm = function (req, res) {
+//    res.render('login', {
+//        login: req.flash('login'),
+//        message: req.flash('message')
+//    });
+//};
 
 
 exports.loginPost = function (req, res, next) {
@@ -61,4 +71,11 @@ exports.logout = function (req, res) {
     req.logout();
     res.clearCookie("remember_me");
     res.redirect('/');
+};
+
+exports.view = function (req, res) {
+    var ctrl = req.params.ctrl;
+    var view = req.params.view;
+    var path = ctrl + '/' + view
+    res.render(path, { title: view,});
 };

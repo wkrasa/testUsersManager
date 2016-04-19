@@ -20,17 +20,17 @@ html
         .navbar-collapse.collapse
           ul.nav.navbar-nav
             li
-              a(href='/') Home
+              a(href='#home') Home
             li
-              a(href='/about') About
+              a(href='#about') About
             li
-              a(href='/contact') Contact
+              a(href='#contact') Contact
             if userName == false
               li
-                a(href='/login') Login
+                a(href='#login') Login
             else
               li
-                a(href='/logout') Logout #{userName}
+                a(href='logout') Logout #{userName}
     .container.body-content
       block content
       hr
@@ -40,6 +40,9 @@ html
     script(src='/javascripts/jquery-1.10.2.js')
     script(src='/javascripts/bootstrap.js')
     script(src='/javascripts/respond.js')
-    script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js')
-    script(src='/javascripts/app/myApp.js')
+    script(src='/javascripts/angular.min.js')
+    script(src='/javascripts/angular-route.min.js')
+    script(src='/javascripts/angular-resource.min.js')
+    script(src='/javascripts/app/testUsersManager.js')
+    script(src='/javascripts/app/main/main.js')
     block scripts

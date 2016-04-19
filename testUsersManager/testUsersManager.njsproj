@@ -31,7 +31,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="app.js" />
-    <Content Include="public\javascripts\app\myApp.js" />
+    <Content Include="public\javascripts\angular-animate.min.js.map" />
+    <Content Include="public\javascripts\angular-resource.min.js.map" />
+    <Content Include="public\javascripts\angular-route.min.js.map" />
+    <Content Include="public\javascripts\angular-sanitize.min.js.map" />
+    <Content Include="public\javascripts\angular-touch.min.js.map" />
+    <Content Include="public\javascripts\angular.min.js.map" />
+    <Content Include="public\javascripts\app\testUsersManager.js" />
     <Compile Include="config.js" />
     <Compile Include="domain\user.js" />
     <Compile Include="passport\rememberMe.js" />
@@ -39,7 +45,20 @@
     <Compile Include="passport\login.js" />
     <Compile Include="passport\init.js" />
     <Compile Include="passport\token.js" />
+    <Compile Include="public\javascripts\angular-animate.min.js" />
+    <Compile Include="public\javascripts\angular-mocks.js" />
+    <Compile Include="public\javascripts\angular-resource.min.js" />
+    <Compile Include="public\javascripts\angular-route.min.js" />
+    <Compile Include="public\javascripts\angular-sanitize.min.js" />
+    <Compile Include="public\javascripts\angular-touch.min.js" />
+    <Compile Include="public\javascripts\angular.min.js" />
+    <Compile Include="public\javascripts\app\account\session.js" />
+    <Compile Include="public\javascripts\app\account\authService.js" />
+    <Compile Include="public\javascripts\app\account\account.js" />
+    <Compile Include="public\javascripts\app\main\main.js" />
+    <Compile Include="routes\account.js" />
     <Compile Include="routes\index.js" />
+    <Content Include="views\account\test.jade" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="public\javascripts\bootstrap.js" />
@@ -66,9 +85,10 @@
     <Content Include="public\stylesheets\bootstrap.min.css" />
     <Content Include="public\stylesheets\style.less" />
     <Content Include="README.md" />
-    <Content Include="views\login.jade" />
-    <Content Include="views\contact.jade" />
-    <Content Include="views\about.jade" />
+    <Content Include="views\home\home.jade" />
+    <Content Include="views\home\login.jade" />
+    <Content Include="views\home\contact.jade" />
+    <Content Include="views\home\about.jade" />
     <Content Include="views\index.jade" />
     <Content Include="views\layout.jade" />
   </ItemGroup>
@@ -80,9 +100,13 @@
     <Folder Include="public\images\" />
     <Folder Include="public\javascripts\" />
     <Folder Include="public\javascripts\app\" />
+    <Folder Include="public\javascripts\app\account\" />
+    <Folder Include="public\javascripts\app\main\" />
     <Folder Include="public\stylesheets\" />
     <Folder Include="routes\" />
     <Folder Include="views\" />
+    <Folder Include="views\home\" />
+    <Folder Include="views\account\" />
   </ItemGroup>
   <!-- Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them. -->
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="False" />
