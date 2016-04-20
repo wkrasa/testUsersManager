@@ -12,37 +12,36 @@ var AccountController = function () {
 var proto = AccountController.prototype;
 util.inherits(AccountController, BaseController);
 
-proto.loginPost = function (req, res, next) {
-    // issue a remember me cookie if the option was checked
-    if (!req.body.rememberMe) { return next(); }
-    
-    var token = tokenMgr.generateToken(64);
-    tokenMgr.saveRememberMeToken(token, req.user, function (err) {
-        if (err) { return done(err); }
-        res.cookie('remember_me', token, { path: '/', httpOnly: true, maxAge: 604800000 }); // 7 days
-        res.cookie('remember_me2', token, { path: '/', httpOnly: true, maxAge: 604800000 }); // 7 days
-        return next();
-    });
-};
-
+proto.login  = function (req, res, next) {
+    passport.authenticate('login', {},  function (err, user, info) {
+        if (err) {
+            return next(err); // will generate a 500 error
+        }
+        if (!user) {
+            return res.json({ isAuth: false, message: 'authentication failed' });
+        }
+        else {
+            if (req.body.rememberMe) {                
+                var token = tokenMgr.generateToken(64);
+                tokenMgr.saveRememberMeToken(token, req.user, function (err) {
+                    if (err) { return done(err); }
+                    res.cookie('remember-me', token, { path: '/', httpOnly: true, maxAge: 604800000 }); // 7 days                   
+                });
+            }
+            return res.json({ isAuth: true, userData: {login: user.login, roles: [] } });
+        }
+    })(req, res, next);
+}
 proto.logout = function (req, res) {
     req.logout();
-    res.clearCookie("remember_me");
+    res.clearCookie("remember-me");
     res.redirect('/');
 };
 
 proto.init = function (app) {
     AccountController.super_.prototype.init.apply(this, arguments);
     
-    app.post('/login', passport.authenticate('login', {
-        //successRedirect: '/',
-        failureRedirect: '/login',
-        failureFlash : true
-    }), 
-	this.loginPost, 
-    function (req, res) {
-        res.redirect('/');
-    });
+    app.post('/login', this.login); 
     app.get('/logout', this.logout);
 }
 

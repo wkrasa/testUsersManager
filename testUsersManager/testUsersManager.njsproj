@@ -31,6 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="app.js" />
+    <Compile Include="public\javascripts\app\main\mainController.js" />
     <Compile Include="routes\view.js" />
     <Content Include="public\javascripts\angular-animate.min.js.map" />
     <Content Include="public\javascripts\angular-resource.min.js.map" />
@@ -54,10 +55,8 @@
     <Compile Include="public\javascripts\angular-sanitize.min.js" />
     <Compile Include="public\javascripts\angular-touch.min.js" />
     <Compile Include="public\javascripts\angular.min.js" />
-    <Compile Include="public\javascripts\app\account\session.js" />
     <Compile Include="public\javascripts\app\account\authService.js" />
     <Compile Include="public\javascripts\app\account\account.js" />
-    <Compile Include="public\javascripts\app\main\main.js" />
     <Compile Include="routes\account.js" />
     <Compile Include="routes\index.js" />
     <Content Include="views\account\test.jade" />
@@ -88,7 +87,7 @@
     <Content Include="public\stylesheets\style.less" />
     <Content Include="README.md" />
     <Content Include="views\home\home.jade" />
-    <Content Include="views\home\login.jade" />
+    <Content Include="views\account\login.jade" />
     <Content Include="views\home\contact.jade" />
     <Content Include="views\home\about.jade" />
     <Content Include="views\index.jade" />

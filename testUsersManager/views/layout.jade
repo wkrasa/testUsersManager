@@ -7,8 +7,7 @@ html
     link(rel='stylesheet', type='text/css', href='/stylesheets/bootstrap.min.css')
     link(rel='stylesheet', type='text/css', href='/stylesheets/style.css')
     script(src='/javascripts/modernizr-2.6.2.js')
-  body
-    h2 User logged in: #{userName}
+  body(ng-app="testUsersManager" ng-controller="mainController")
     .navbar.navbar-inverse.navbar-fixed-top
       .container
         .navbar-header
@@ -25,12 +24,10 @@ html
               a(href='#about') About
             li
               a(href='#contact') Contact
-            if userName == false
-              li
-                a(href='#login') Login
-            else
-              li
-                a(href='logout') Logout #{userName}
+            li(login-hide)
+              a(href='#login' ) Login
+            li(login-show)
+              a(href='' ng-click="logout()") Logout {{user}}
     .container.body-content
       block content
       hr
@@ -44,5 +41,8 @@ html
     script(src='/javascripts/angular-route.min.js')
     script(src='/javascripts/angular-resource.min.js')
     script(src='/javascripts/app/testUsersManager.js')
-    script(src='/javascripts/app/main/main.js')
+    script(src='/javascripts/app/main/mainController.js')
+    script(src='/javascripts/app/account/authService.js')
+    script(src='/javascripts/app/account/account.js')
+    
     block scripts

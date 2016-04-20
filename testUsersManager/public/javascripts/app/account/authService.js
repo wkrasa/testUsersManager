@@ -14,14 +14,14 @@ angular.module('testUsersManager')
     authSrv.isLoggedIn = function () {
         return authSrv.user != null;
     }
-    authSrv.login = function (login, pass, afterLogin) {
-        $http.post(loginUrl, { Login: login, Password: pass })
+    authSrv.login = function (credentials, afterLogin) {
+        $http.post(loginUrl, credentials)
         .success(function (data, status, headers, config) {
-            if (data.IsAuth) {
-                authSrv.user = { login: data.UserData.Login, roles: data.UserData.Roles };
+            if (data.isAuth) {
+                authSrv.user = { login: data.userData.login, roles: data.userData.roles };
                 $rootScope.$broadcast("login");
                 if (afterLogin != null) { afterLogin(data); }
-                if (authSrv.returnUrl == null) { $location.url('/home'); }
+                if (authSrv.returnUrl == null) { $location.url('/'); }
                 else { { $location.url(authSrv.returnUrl); } }
             }
             else {
@@ -29,7 +29,7 @@ angular.module('testUsersManager')
             }
         }).
             error(function (data, status, headers, config) {
-            if (afterLogin != null) { afterLogin({ IsAuth: false, Error: "Connection problem, please retry" }); }
+            if (afterLogin != null) { afterLogin({ isAuth: false, message: "Connection problem, please retry" }); }
         });
     }
     
@@ -43,9 +43,10 @@ angular.module('testUsersManager')
     }
     
     authSrv.logout = function () {
-        $http.get(logoutUrl, { method: 'Delete' });
+        $http.get(logoutUrl);
         authSrv.user = null;
         $rootScope.$broadcast("logout");
+        $location.path(loginPath).replace();
     }
     
     authSrv.checkRoles = function (userRolesArr, acceessRolesArr) {
@@ -72,7 +73,7 @@ angular.module('testUsersManager')
     */
     $rootScope.$on("$routeChangeStart", function (event, next, current) {
         if (next.access !== undefined) {
-            if (next.access.autorize && authSrv.isLoggedIn() == false) {
+            if (next.access.authorize && authSrv.isLoggedIn() == false) {
                 event.preventDefault();
                 authSrv.returnUrl = next.originalPath;
                 $location.path(loginPath).replace();

@@ -12,6 +12,9 @@
 - REST service
 - client side validation
 - server validation mechanism
+- translations
+- add loggers for action, security, errors
+- check promisses tutorial
 
 - users menagment app
 -- crud for users
@@ -39,6 +42,7 @@
 -- services for users and categories
 -- think over few directives
 +- create simple app
+-- add interceptor for 401 status
 + create domain model for user (mongoose)
 
 
