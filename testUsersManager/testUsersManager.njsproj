@@ -31,20 +31,22 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="app.js" />
+    <Compile Include="routes\view.js" />
     <Content Include="public\javascripts\angular-animate.min.js.map" />
     <Content Include="public\javascripts\angular-resource.min.js.map" />
     <Content Include="public\javascripts\angular-route.min.js.map" />
     <Content Include="public\javascripts\angular-sanitize.min.js.map" />
     <Content Include="public\javascripts\angular-touch.min.js.map" />
     <Content Include="public\javascripts\angular.min.js.map" />
-    <Content Include="public\javascripts\app\testUsersManager.js" />
+    <Compile Include="infrastructure\baseController.js" />
+    <Compile Include="public\javascripts\app\testUsersManager.js" />
     <Compile Include="config.js" />
     <Compile Include="domain\user.js" />
-    <Compile Include="passport\rememberMe.js" />
-    <Compile Include="passport\signup.js" />
-    <Compile Include="passport\login.js" />
-    <Compile Include="passport\init.js" />
-    <Compile Include="passport\token.js" />
+    <Compile Include="infrastructure\passport\rememberMe.js" />
+    <Compile Include="infrastructure\passport\signup.js" />
+    <Compile Include="infrastructure\passport\login.js" />
+    <Compile Include="infrastructure\passport\init.js" />
+    <Compile Include="infrastructure\passport\token.js" />
     <Compile Include="public\javascripts\angular-animate.min.js" />
     <Compile Include="public\javascripts\angular-mocks.js" />
     <Compile Include="public\javascripts\angular-resource.min.js" />
@@ -61,20 +63,20 @@
     <Content Include="views\account\test.jade" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="public\javascripts\bootstrap.js" />
-    <Content Include="public\javascripts\bootstrap.min.js" />
-    <Content Include="public\javascripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="public\javascripts\jquery-1.10.2.js" />
-    <Content Include="public\javascripts\jquery-1.10.2.min.js" />
-    <Content Include="public\javascripts\jquery.validate-vsdoc.js" />
-    <Content Include="public\javascripts\jquery.validate.js" />
-    <Content Include="public\javascripts\jquery.validate.min.js" />
-    <Content Include="public\javascripts\jquery.validate.unobtrusive.js" />
-    <Content Include="public\javascripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="public\javascripts\modernizr-2.6.2.js" />
-    <Content Include="public\javascripts\respond.js" />
-    <Content Include="public\javascripts\respond.min.js" />
-    <Content Include="public\javascripts\_references.js" />
+    <Compile Include="public\javascripts\bootstrap.js" />
+    <Compile Include="public\javascripts\bootstrap.min.js" />
+    <Compile Include="public\javascripts\jquery-1.10.2.intellisense.js" />
+    <Compile Include="public\javascripts\jquery-1.10.2.js" />
+    <Compile Include="public\javascripts\jquery-1.10.2.min.js" />
+    <Compile Include="public\javascripts\jquery.validate-vsdoc.js" />
+    <Compile Include="public\javascripts\jquery.validate.js" />
+    <Compile Include="public\javascripts\jquery.validate.min.js" />
+    <Compile Include="public\javascripts\jquery.validate.unobtrusive.js" />
+    <Compile Include="public\javascripts\jquery.validate.unobtrusive.min.js" />
+    <Compile Include="public\javascripts\modernizr-2.6.2.js" />
+    <Compile Include="public\javascripts\respond.js" />
+    <Compile Include="public\javascripts\respond.min.js" />
+    <Compile Include="public\javascripts\_references.js" />
     <Content Include="package.json" />
     <Content Include="public\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="public\fonts\glyphicons-halflings-regular.svg" />
@@ -94,7 +96,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="domain\" />
-    <Folder Include="passport\" />
+    <Folder Include="infrastructure\" />
+    <Folder Include="infrastructure\passport\" />
     <Folder Include="public\" />
     <Folder Include="public\fonts\" />
     <Folder Include="public\images\" />

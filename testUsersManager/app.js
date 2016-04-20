@@ -8,7 +8,8 @@ var http = require('http');
 var path = require('path');
 var lessMiddleware = require("less-middleware");
 var passport = require('passport');
-var tokenMgr = require('./passport/token');
+var tokenMgr = require('./infrastructure/passport/token');
+var initPassport = require('./infrastructure/passport/init');
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 require('./domain/user.js');
@@ -24,17 +25,6 @@ var User = mongoose.model('User');
 //User.find({}, function (err, res) {
 
 //});
-
-var isAuthenticated = function (req, res, next) {
-    // if user is authenticated in the session, call the next() to call the next request handler 
-    // Passport adds this method to request object. A middleware is allowed to add properties to
-    // request and response objects
-	if (req.isAuthenticated()) {
-		return next();
-	}
-    // if the user is not authenticated then redirect him to the login page
-    res.redirect('/login');
-}
 
 var app = express();
 
@@ -57,12 +47,9 @@ app.use(passport.authenticate('remember-me'));
 
 var flash = require('connect-flash');
 app.use(flash());
-
-var initPassport = require('./passport/init');
 initPassport(passport);
 
 app.use(app.router);
-//app.use(require('stylus').middleware(path.join(__dirname, 'public')));
 app.use(lessMiddleware(path.join(__dirname, config.publicFolder), {
     debug: 'development' == app.get('env'),
     force: true
@@ -70,7 +57,7 @@ app.use(lessMiddleware(path.join(__dirname, config.publicFolder), {
 app.use(express.static(path.join(__dirname, config.publicFolder)));
 
 
-var routes = require('./routes');
+//var routes = require('./routes');
 
 // development only
 if ('development' == app.get('env')) {
@@ -84,22 +71,31 @@ app.use(function (req, res, next) {
     next(err);
 });
 
-app.get('/views/:ctrl/:view', routes.view);
-app.get('/', routes.index);
+var IndexController = new require('./routes/index.js');
+var ctrl = new IndexController();
+ctrl.init(app);
+var AccountController = new require('./routes/account.js');
+ctrl = new AccountController();
+ctrl.init(app);
+var ViewController = new require('./routes/view.js');
+ctrl = new ViewController();
+ctrl.init(app);
+//app.get('/views/:ctrl/:view', routes.view);
+//app.get('/', routes.index);
 //app.get('/home', routes.home);
 //app.get('/about', isAuthenticated, routes.about);
 //app.get('/contact', routes.contact);
 //app.get('/login', routes.loginForm);
-app.post('/login', passport.authenticate('login', {
-        //successRedirect: '/',
-        failureRedirect: '/login',
-        failureFlash : true
-    }), 
-	routes.loginPost, 
-    function (req, res) {   
-        res.redirect('/');
-    });
-app.get('/logout', routes.logout);
+//app.post('/login', passport.authenticate('login', {
+//        //successRedirect: '/',
+//        failureRedirect: '/login',
+//        failureFlash : true
+//    }), 
+//	routes.loginPost, 
+//    function (req, res) {   
+//        res.redirect('/');
+//    });
+//app.get('/logout', routes.logout);
 
 http.createServer(app).listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port')); 

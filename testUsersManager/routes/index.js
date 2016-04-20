@@ -1,10 +1,18 @@
-﻿var tokenMgr = require('../passport/token');
+﻿var tokenMgr = require('../infrastructure/passport/token');
+var passport = require('passport');
 
+var util = require('util');
+var BaseController = require('../infrastructure/baseController.js');
 /*
- * GET home page.
+ * IndexController
  */
+var IndexController = function () {
+    IndexController.super_.apply(this, arguments);
+}
+var proto = IndexController.prototype;
+util.inherits(IndexController, BaseController);
 
-exports.index = function (req, res, next) {
+proto.index = function (req, res, next) {
     var login = "";
     if (req.user) { login = req.user.login; }
     res.render('index', {
@@ -14,68 +22,9 @@ exports.index = function (req, res, next) {
 	});
 };
 
-//exports.home = function (req, res, next) {
-//    var login = "";
-//    if (req.user) { login = req.user.login; }
-//    res.render('home', {
-//        title: 'Express',
-//        year: new Date().getFullYear(),
-//        userName: login
-//    });
-//};
+proto.init = function (app) {
+    IndexController.super_.prototype.init.apply(this, arguments);    
+    app.get('/', this.index);
+}
 
-//exports.about = function (req, res) {
-//    var login = "";
-//    if (req.user) { login = req.user.login; }
-//    res.render('about', {
-//        title: 'About',
-//        year: new Date().getFullYear(),
-//        message: 'Your application description page',
-//        userName: login
-//    });
-//};
-
-//exports.contact = function (req, res) {
-//    var login = "";
-//    if (req.user) { login = req.user.login; }
-//    res.render('contact', {
-//        title: 'Contact',
-//        year: new Date().getFullYear(),
-//        message: 'Your contact page',
-//        userName: login
-//    });
-//};
-
-//exports.loginForm = function (req, res) {
-//    res.render('login', {
-//        login: req.flash('login'),
-//        message: req.flash('message')
-//    });
-//};
-
-
-exports.loginPost = function (req, res, next) {
-	// issue a remember me cookie if the option was checked
-	if (!req.body.rememberMe) { return next(); }
-	
-	var token = tokenMgr.generateToken(64);
-	tokenMgr.saveRememberMeToken(token, req.user, function (err) {
-		if (err) { return done(err); }
-		res.cookie('remember_me', token, { path: '/', httpOnly: true, maxAge: 604800000 }); // 7 days
-		res.cookie('remember_me2', token, { path: '/', httpOnly: true, maxAge: 604800000 }); // 7 days
-		return next();
-	});
-};
-
-exports.logout = function (req, res) {
-    req.logout();
-    res.clearCookie("remember_me");
-    res.redirect('/');
-};
-
-exports.view = function (req, res) {
-    var ctrl = req.params.ctrl;
-    var view = req.params.view;
-    var path = ctrl + '/' + view
-    res.render(path, { title: view,});
-};
+module.exports = IndexController;
