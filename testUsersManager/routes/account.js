@@ -18,21 +18,27 @@ proto.login  = function (req, res, next) {
             return next(err); // will generate a 500 error
         }
         if (!user) {
+            this.loggers.logSecurity.info('Authentication failed: %s', req.body.login);
             return res.json({ isAuth: false, message: 'authentication failed' });
         }
         else {
-            if (req.body.rememberMe) {                
-                var token = tokenMgr.generateToken(64);
-                tokenMgr.saveRememberMeToken(token, req.user, function (err) {
-                    if (err) { return done(err); }
-                    res.cookie('remember-me', token, { path: '/', httpOnly: true, maxAge: 604800000 }); // 7 days                   
-                });
-            }
-            return res.json({ isAuth: true, userData: {login: user.login, roles: [] } });
+            req.logIn(user, function (err) {
+                if (err) { return next(err); }
+                this.loggers.logSecurity.info('Authentication success, user: %s', req.body.login);
+                if (req.body.rememberMe) {
+                    var token = tokenMgr.generateToken(64);
+                    res.cookie('remember-me', token, { path: '/', httpOnly: true, maxAge: 604800000 }); // 7 days      
+                }
+                res.json({ isAuth: true, userData: { login: user.login, roles: [] } });
+                
+            });
+           
+            
         }
     })(req, res, next);
 }
 proto.logout = function (req, res) {
+    this.loggers.logSecurity.info('User logged out: %s', req.user.login);
     req.logout();
     res.clearCookie("remember-me");
     res.redirect('/');

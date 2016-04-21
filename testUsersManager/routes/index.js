@@ -13,12 +13,10 @@ var proto = IndexController.prototype;
 util.inherits(IndexController, BaseController);
 
 proto.index = function (req, res, next) {
-    var login = "";
-    if (req.user) { login = req.user.login; }
+    this.loggers.logInfo.info('index.index requested');
     res.render('index', {
         title: 'Express',
-        year: new Date().getFullYear(),
-        userName: login
+        year: new Date().getFullYear()
 	});
 };
 

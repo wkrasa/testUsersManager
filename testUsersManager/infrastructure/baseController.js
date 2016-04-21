@@ -1,4 +1,7 @@
-﻿var BaseController = function () { 
+﻿
+
+var BaseController = function () { 
+    this.loggers = require('./loggers');
 }
 var proto = BaseController.prototype;
 

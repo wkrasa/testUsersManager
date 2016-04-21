@@ -31,6 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="app.js" />
+    <Compile Include="infrastructure\loggers.js" />
     <Compile Include="public\javascripts\app\main\mainController.js" />
     <Compile Include="routes\view.js" />
     <Content Include="public\javascripts\angular-animate.min.js.map" />

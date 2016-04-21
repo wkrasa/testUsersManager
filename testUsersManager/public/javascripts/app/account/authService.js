@@ -27,8 +27,8 @@ angular.module('testUsersManager')
             else {
                 if (afterLogin != null) { afterLogin(data); }
             }
-        }).
-            error(function (data, status, headers, config) {
+        })
+        .error(function (data, status, headers, config) {
             if (afterLogin != null) { afterLogin({ isAuth: false, message: "Connection problem, please retry" }); }
         });
     }

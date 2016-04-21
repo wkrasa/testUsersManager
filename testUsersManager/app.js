@@ -2,6 +2,9 @@
 /**
  * Module dependencies.
  */
+loggers = require('./infrastructure/loggers');
+loggers.logInfo.info('Server starting');
+
 var config = require('./config')('dev');
 var express = require('express');
 var http = require('http');
@@ -66,9 +69,19 @@ if ('development' == app.get('env')) {
 
 /// catch 404 and forward to error handler
 app.use(function (req, res, next) {
+    loggers.logError('Not found %s', req.url);
     var err = new Error('Not Found');
     err.status = 404;
     next(err);
+});
+
+app.use(err, req, res, next) {
+    loggers.logError('Error while procesing request: %s', JSON.stringify(err));
+    if (res.headersSent) {
+        return next(err);
+    }
+    res.status(500);
+    res.render('error', { error: err });
 });
 
 var IndexController = new require('./routes/index.js');
@@ -80,23 +93,8 @@ ctrl.init(app);
 var ViewController = new require('./routes/view.js');
 ctrl = new ViewController();
 ctrl.init(app);
-//app.get('/views/:ctrl/:view', routes.view);
-//app.get('/', routes.index);
-//app.get('/home', routes.home);
-//app.get('/about', isAuthenticated, routes.about);
-//app.get('/contact', routes.contact);
-//app.get('/login', routes.loginForm);
-//app.post('/login', passport.authenticate('login', {
-//        //successRedirect: '/',
-//        failureRedirect: '/login',
-//        failureFlash : true
-//    }), 
-//	routes.loginPost, 
-//    function (req, res) {   
-//        res.redirect('/');
-//    });
-//app.get('/logout', routes.logout);
 
 http.createServer(app).listen(app.get('port'), function () {
-    console.log('Express server listening on port ' + app.get('port')); 
+    console.log('Express server listening on port ' + app.get('port'));
+    loggers.logInfo.info('Express server listening on port ' + app.get('port'));
 });

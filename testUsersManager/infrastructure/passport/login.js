@@ -10,8 +10,6 @@ module.exports = function (passport) {
         passReqToCallback : true
     },
     function (req, username, password, done) {
-     
-            req.flash('login', username)
             if (username != _user.login) {
                 console.log('User Not Found with username ' + username);
                 return done(null, false, req.flash('message', 'User Not found.'));
