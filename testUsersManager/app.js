@@ -75,14 +75,14 @@ app.use(function (req, res, next) {
     next(err);
 });
 
-app.use(err, req, res, next) {
-    loggers.logError('Error while procesing request: %s', JSON.stringify(err));
-    if (res.headersSent) {
-        return next(err);
-    }
-    res.status(500);
-    res.render('error', { error: err });
-});
+//app.use(err, req, res, next) {
+//    loggers.logError('Error while procesing request: %s', JSON.stringify(err));
+//    if (res.headersSent) {
+//        return next(err);
+//    }
+//    res.status(500);
+//    res.render('error', { error: err });
+//});
 
 var IndexController = new require('./routes/index.js');
 var ctrl = new IndexController();

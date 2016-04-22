@@ -13,7 +13,8 @@ proto.isAuthenticated = function (req, res, next) {
         return next();
     }
     // if the user is not authenticated then redirect him to the login page
-    res.redirect('/login');
+    //res.redirect('/login');
+    res.status(401).send('Not authenticated');
 }
 
 proto.init = function (app) {
