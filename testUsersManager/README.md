@@ -33,18 +33,19 @@
 -- create partial view for index/home page
 -- create special route for partial views for angular
 - use bootstrap 
--- check bootstrap tutorial
+-- check bootstrap javascript for angular (modal, etc)
++- check bootstrap tutorial
 - create layout for mobile devices !
++ create login view with bootstrap form styles
 
 + jade tutorial
 + add angular
 +- ng-view
 +- ng-route
 -- services for users and categories
--- think over few directives, f.e. 3 state button
--- add interceptor for 401 status !!
+-- think over few directives, f.e. 3 state button, color selection
++- add interceptor for 401 status !!
 + create domain model for user (mongoose)
 - request forgery token
-- check bootstrap javascript for angular (modal, etc)
---- create accout controller, and auth service form angular. Add interceptor for $http. After that add auth req to routes
+
 
