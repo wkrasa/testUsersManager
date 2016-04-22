@@ -1,0 +1,25 @@
+div
+    .panel.panel-primary
+        .panel-heading
+            h3(class="panel-title") Login form  
+        .panel-body
+            form(action="/login" method="post" name="authForm" class="form-horizontal")
+                div(ng-show="message" class="alert alert-danger")
+                    p {{message}}
+                .form-group
+                    label(for="login" class="col-sm-2 control-label") login
+                    .col-sm-10
+                        input(type="text" class="form-control" name="login" id="login" ng-model="credentials.login" required) 
+                .form-group
+                    label(for="password" class="col-sm-2 control-label") password
+                    .col-sm-10
+                        input(type="text" class="form-control" name="password" id="password" ng-model="credentials.password" required) 
+                .form-group
+                    .col-sm-offset-2.col-sm-10
+                        .checkbox
+                            label
+                                input(type="checkbox" name="rememberMe" id="rememberMe" ng-model="credentials.rememberMe") 
+                                span remember me
+                .form-group 
+                    .col-sm-offset-2.col-sm-10
+                         button(class="btn btn-default" ng-disabled="authForm.$invalid" type="button" ng-click="login(credentials)") Login

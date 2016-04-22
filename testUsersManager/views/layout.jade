@@ -28,6 +28,7 @@ html
               a(href='#login' ) Login
             li(login-show)
               a(href='' ng-click="logout()") Logout {{user}}
+    div(messages-dir style="position: absolute" class="col-sm-offset-2 col-sm-8")
     .container.body-content
       block content
       hr
@@ -44,5 +45,5 @@ html
     script(src='/javascripts/app/main/mainController.js')
     script(src='/javascripts/app/account/authService.js')
     script(src='/javascripts/app/account/account.js')
-    
+    script(src='/javascripts/app/infrastructure/messagesSrv.js')
     block scripts

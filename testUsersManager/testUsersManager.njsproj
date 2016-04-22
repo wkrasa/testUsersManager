@@ -32,6 +32,7 @@
   <ItemGroup>
     <Compile Include="app.js" />
     <Compile Include="infrastructure\loggers.js" />
+    <Compile Include="public\javascripts\app\infrastructure\messagesSrv.js" />
     <Compile Include="public\javascripts\app\main\mainController.js" />
     <Compile Include="routes\view.js" />
     <Content Include="public\javascripts\angular-animate.min.js.map" />
@@ -105,6 +106,7 @@
     <Folder Include="public\javascripts\app\" />
     <Folder Include="public\javascripts\app\account\" />
     <Folder Include="public\javascripts\app\main\" />
+    <Folder Include="public\javascripts\app\infrastructure\" />
     <Folder Include="public\stylesheets\" />
     <Folder Include="routes\" />
     <Folder Include="views\" />
