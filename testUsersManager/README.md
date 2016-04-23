@@ -1,7 +1,7 @@
 ﻿+ login mechanism
 +- cookie login
 + config file
-- db connection menagement (mongoose)
+- db connection menagement (mongoose) !
 + less
 + jade
 - bundles
@@ -34,7 +34,7 @@
 -- create special route for partial views for angular
 - use bootstrap 
 -- check bootstrap javascript for angular (modal, etc) (http://getbootstrap.com/javascript/)
---- add directives for modal, so it can be used from angular
+--- add directives for modal, so it can be used from angular !!!
 +- check bootstrap tutorial
 - create layout for mobile devices !
 + create login view with bootstrap form styles
@@ -44,7 +44,7 @@
 +- ng-view
 +- ng-route
 -- services for users and categories
--- think over few directives, f.e. 3 state button, color selection
+-- think over few directives, f.e. 3 state button, color selection !!!
 +- add interceptor for 401 status
 + create domain model for user (mongoose)
 - request forgery token

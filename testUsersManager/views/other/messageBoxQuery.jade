@@ -1,0 +1,8 @@
+﻿.modal-header
+    h3(class="modal-title") {{title}}
+.modal-body
+        p {{message}}
+.modal-footer
+    button( class="btn btn-primary" ng-visile="yesVisible" ng-click="yes()") Yes
+    button( class="btn btn-default" ng-visile="noVisible" ng-click="no()") No
+    button( class="btn btn-default" ng-visile="cancelVisible" ng-click="cancel()") Cancel
