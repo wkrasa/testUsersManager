@@ -31,6 +31,14 @@
         templateUrl: '/views/account/login',
         controller: 'loginController'
     })
+     .when('/register', {
+        templateUrl: '/views/account/register',
+        controller: 'registrationController'
+    })
+    .when('/registrationSuccessfull', {
+        templateUrl: '/views/account/registrationSuccessfull',
+        controller: 'registrationController'
+    })
 	.otherwise({
 	    redirectTo: '/views/home/home'
 	});

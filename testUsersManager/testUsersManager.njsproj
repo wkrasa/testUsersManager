@@ -50,6 +50,9 @@
     <Compile Include="public\javascripts\app\account\account.js" />
     <Compile Include="routes\account.js" />
     <Compile Include="routes\index.js" />
+    <Content Include="readme.txt" />
+    <Content Include="views\account\register.jade" />
+    <Content Include="views\account\registrationSuccessfull.jade" />
     <Content Include="views\account\test.jade" />
     <Content Include="views\other\messageBoxQuery.jade" />
   </ItemGroup>
@@ -77,7 +80,6 @@
     <Content Include="public\stylesheets\bootstrap.css" />
     <Content Include="public\stylesheets\bootstrap.min.css" />
     <Content Include="public\stylesheets\style.less" />
-    <Content Include="README.md" />
     <Content Include="views\home\home.jade" />
     <Content Include="views\account\login.jade" />
     <Content Include="views\home\contact.jade" />

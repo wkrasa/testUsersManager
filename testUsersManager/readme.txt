@@ -38,6 +38,17 @@
 +- check bootstrap tutorial
 - create layout for mobile devices !
 + create login view with bootstrap form styles
++ create registration view
+- add proper validation for views in angular
+-- login view
+-- registration view
+
+- switch to rest api for login/logout/register
+
+- create registration mechanism on server
+-- save users to DB
+-create registration mechanism on client side 
+- create server mechanism for returning validation errors
 
 + jade tutorial
 + add angular

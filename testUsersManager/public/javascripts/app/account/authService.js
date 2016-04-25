@@ -3,11 +3,12 @@ angular.module('testUsersManager')
 
 .value('loginUrl', '/login')
 .value('logoutUrl', '/logout')
-.value('registerUrl', '/register')
+.value('registerUrl', '/account')
 .value('loginPath', '/login')
 .value('userForbidden', '/forbidden')
+.value('registrationSuccessfull', '/registrationSuccessfull')
 
-.factory('authService', function ($rootScope, $http, $location, loginUrl, logoutUrl, registerUrl, loginPath, userForbidden) {
+.factory('authService', function ($rootScope, $http, $location, loginUrl, logoutUrl, registerUrl, loginPath, userForbidden, registrationSuccessfull) {
     var authSrv = {};
     authSrv.user = null;
     authSrv.returnUrl = null;
@@ -33,12 +34,23 @@ angular.module('testUsersManager')
         });
     }
     
-    authSrv.register = function (login, pass, pass2, afterLogin) {
+    authSrv.register = function (userData, afterLogin) {
         return $http(
             {
                 url: registerUrl,
-                method: 'Put',
-                data: { Login: login, Password: pass, Password2: pass2 }
+                method: 'put',
+                data: { login: userData.login, password: userData.passowrd, repeatPassword: userData.repeatPassword }
+            })
+                .success(function (data, status, headers, config) {
+                if (data.isRegistred) {
+                    $location.path(registrationSuccessfull).replace();
+                }
+            else {
+                    if (afterLogin != null) { afterLogin({isRegistred: data.isRegistred, message: data.message}); }
+                }
+            })
+            .error(function (data, status, headers, config) {
+                if (afterLogin != null) { afterLogin({ isRegistred: false, message: "Connection problem, please retry" }); }
             });
     }
     

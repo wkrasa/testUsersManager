@@ -31,17 +31,26 @@ proto.login  = function (req, res, next) {
                 }
                 res.json({ isAuth: true, userData: { login: user.login, roles: [] } });
                 
-            });
-           
-            
+            });                       
         }
     })(req, res, next);
 }
+
+proto.register = function (req, res, next) {
+    //todo: validate user data
+    if (!req.body.login || req.body.login === 'test') {
+        res.json({ isRegistred: false, message: 'login is required' });
+        return;
+    }
+    //todo: create user here
+    res.json({ isRegistred: true });
+}
+
 proto.logout = function (req, res) {
     this.loggers.logSecurity.info('User logged out: %s', req.user.login);
     req.logout();
     res.clearCookie("remember-me");
-    res.redirect('/');
+    res.json({});
 };
 
 proto.init = function (app) {
@@ -49,6 +58,7 @@ proto.init = function (app) {
     
     app.post('/login', this.login); 
     app.get('/logout', this.logout);
+    app.put('/account', this.register);
 }
 
 module.exports = AccountController;

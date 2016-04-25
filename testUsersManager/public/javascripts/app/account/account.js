@@ -6,6 +6,8 @@ app.controller('loginController', function ($scope, $rootScope, authService) {
         username: '',
         password: ''
     };
+    $scope.message = '';
+
     $scope.login = function (credentials) {
         authService.login(credentials, function (data) {
             if (!data.isAuth) {
@@ -13,4 +15,12 @@ app.controller('loginController', function ($scope, $rootScope, authService) {
             }
         });
     };
-})
+}).controller('registrationController', function ($scope, $rootScope, authService) {
+    $scope.register = function (userData) {
+        authService.register(userData, function (data) {
+            if (!data.isRegistred) {
+                $scope.message = data.message;
+            }
+        });
+    };
+});
