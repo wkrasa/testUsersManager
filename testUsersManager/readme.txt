@@ -22,7 +22,7 @@
 -- crud for groups
 
 -tests: see http://code.tutsplus.com/tutorials/build-a-complete-mvc-website-with-expressjs--net-34168
--- jasmine !
+-- jasmine !	
 
 ------VIEWS----- 
 - create views
@@ -63,6 +63,6 @@
 - request forgery token
 
 - use batarang for angular
-- add extra request for angular, in order to perform check, if user was not logged in form cookie
++ add extra request for angular, in order to perform check, if user was not logged in form cookie
 
 

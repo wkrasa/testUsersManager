@@ -55,12 +55,15 @@ angular.module('testUsersManager')
     }
     
     authSrv.logout = function () {
-        $http.get(logoutUrl);
+        $http({ url: logoutUrl, method: 'delete'});
         authSrv.user = null;
         $rootScope.$broadcast("logout");
         $location.path(loginPath).replace();
     }
     
+    authSrv.getLoggedUser = function () {
+        return $http({ url: loginUrl, method: 'get' });
+    }
     authSrv.checkRoles = function (userRolesArr, acceessRolesArr) {
         if (acceessRolesArr.length == 0) { return true; }
         var res = false;
@@ -84,28 +87,29 @@ angular.module('testUsersManager')
         });
     */
     $rootScope.$on("$routeChangeStart", function (event, next, current) {
-        if (next.access !== undefined) {
-            if (next.access.authorize && authSrv.isLoggedIn() == false) {
-                event.preventDefault();
-                authSrv.returnUrl = next.originalPath;
-                $location.path(loginPath).replace();
+        authSrv.getLoggedUser()
+        .success(function (data) {
+            if (data.login) {
+                authSrv.user = { login: data.login, roles: data.roles };
+                $rootScope.$broadcast("login");
             }
-            else if (next.access.roles != null) {
+        })
+        .finally(function () {
+            if (next.access !== undefined && next.access.authorize === true) {
                 if (authSrv.isLoggedIn() == false) {
                     event.preventDefault();
                     authSrv.returnUrl = next.originalPath;
                     $location.path(loginPath).replace();
                 }
-                else {
-                    if (authSrv.checkRoles(authSrv.user.roles, next.access.roles) == false) {
-                        event.preventDefault();
-                        authSrv.returnUrl = next.originalPath;
-                        $location.path(userForbidden).replace();
-                    }
+                else if (next.access.roles != null && authSrv.checkRoles(authSrv.user.roles, next.access.roles) == false) {
+                    event.preventDefault();
+                    authSrv.returnUrl = next.originalPath;
+                    $location.path(userForbidden).replace();
                 }
             }
-        }
+        });
     });
+
     return authSrv;
 }).factory('authHttpResponseInterceptor', ['$q', '$location', function ($q, $location) {
         return {
