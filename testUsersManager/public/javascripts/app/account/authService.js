@@ -41,11 +41,11 @@ angular.module('testUsersManager')
                 method: 'put',
                 data: { login: userData.login, password: userData.passowrd, repeatPassword: userData.repeatPassword }
             })
-                .success(function (data, status, headers, config) {
+            .success(function (data, status, headers, config) {
                 if (data.isRegistred) {
                     $location.path(registrationSuccessfull).replace();
                 }
-            else {
+                else {
                     if (afterLogin != null) { afterLogin({isRegistred: data.isRegistred, message: data.message}); }
                 }
             })
@@ -113,8 +113,9 @@ angular.module('testUsersManager')
                 if (rejection.status === 401) {
                     console.log("Response Error 401", rejection);
                     $location.path('/login').search('returnTo', $location.path());
-                }
-                return $q.reject(rejection);
+                } 
+                //return $q.reject(rejection);
+                return rejection;
             }
         }
     }])

@@ -39,9 +39,9 @@
 - create layout for mobile devices !
 + create login view with bootstrap form styles
 + create registration view
-- add proper validation for views in angular
--- login view
--- registration view
++ add proper validation for views in angular
++- login view
++- registration view
 
 - switch to rest api for login/logout/register
 
@@ -50,7 +50,7 @@
 + create registration mechanism on client side 
 - create server mechanism for returning validation errors
 
-- add custom login cookie management: add custom 'use' module  for express (replace passport - store user in session)
++ add custom login cookie management: add custom 'use' module  for express (replace passport - store user in session)
 
 + jade tutorial
 + add angular

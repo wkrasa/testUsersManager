@@ -44,10 +44,6 @@
     <Compile Include="public\javascripts\app\testUsersManager.js" />
     <Compile Include="config.js" />
     <Compile Include="domain\user.js" />
-    <Compile Include="infrastructure\passport\rememberMe.js" />
-    <Compile Include="infrastructure\passport\signup.js" />
-    <Compile Include="infrastructure\passport\login.js" />
-    <Compile Include="infrastructure\passport\token.js" />
     <Compile Include="public\javascripts\app\account\authService.js" />
     <Compile Include="public\javascripts\app\account\account.js" />
     <Compile Include="routes\account.js" />
@@ -94,7 +90,6 @@
     <Folder Include="domain\" />
     <Folder Include="infrastructure\" />
     <Folder Include="infrastructure\authorization\" />
-    <Folder Include="infrastructure\passport\" />
     <Folder Include="public\" />
     <Folder Include="public\fonts\" />
     <Folder Include="public\images\" />

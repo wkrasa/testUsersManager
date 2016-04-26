@@ -1,4 +1,4 @@
-﻿var tokenMgr = require('../infrastructure/passport/token');
+﻿var tokenMgr = require('../infrastructure/token');
 var authModule = require('../infrastructure/authorization/authModule');
 
 var util = require('util');
@@ -21,12 +21,12 @@ proto.login = function (req, res, next) {
     //TODO validate request and check user against database
     if (login != _user.login) {
         console.log('User Not Found with username ' + login);
-        return res.json({ isAuth: false, message: 'Wrong user or passowrd!' });
+        return res.json(400, { isAuth: false, message: 'Wrong user or passowrd!' });
     }
     
     if (_user.password != password) {
         console.log('Invalid Password');
-        return res.json({ isAuth: false, message: 'Wrong user or password!'});
+        return res.json(400, { isAuth: false, message: 'Wrong user or password!'});
     }
     authModule.loginUser(req, res, { login: login }, rememberMe);
     return res.json({ isAuth: true, userData: { login: login, roles: [] } });
@@ -35,7 +35,7 @@ proto.login = function (req, res, next) {
 proto.register = function (req, res, next) {
     //todo: validate user data
     if (!req.body.login || req.body.login === 'test') {
-        res.json({ isRegistred: false, message: 'login is required' });
+        res.json(400, { isRegistred: false, message: 'login already taken' });
         return;
     }
     //todo: create user here

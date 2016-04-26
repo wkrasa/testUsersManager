@@ -10,7 +10,6 @@ var express = require('express');
 var http = require('http');
 var path = require('path');
 var lessMiddleware = require("less-middleware");
-var passport = require('passport');
 var tokenMgr = require('./infrastructure/token');
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
@@ -37,11 +36,9 @@ app.set('view engine', 'jade');
 app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.json());
-
 app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(express.cookieParser());
-
 app.use(express.session({ secret: tokenMgr.generateToken(32), cookie: { maxAge: 60000 } }));
 app.use(require('./infrastructure/authorization/authModule').onRequestStart);
 

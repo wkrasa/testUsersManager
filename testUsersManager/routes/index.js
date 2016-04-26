@@ -1,7 +1,4 @@
-﻿var tokenMgr = require('../infrastructure/passport/token');
-var passport = require('passport');
-
-var util = require('util');
+﻿var util = require('util');
 var BaseController = require('../infrastructure/baseController.js');
 /*
  * IndexController
