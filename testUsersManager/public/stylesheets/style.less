@@ -35,3 +35,26 @@ input[type="checkbox"].input-validation-error {
 .validation-summary-valid {
   display: none;
 }
+
+form{
+    .ng-invalid.ng-dirty{
+        background-color: lightcoral;   
+    }
+
+     .ng-valid.ng-dirty{
+        background-color: lightgreen;   
+    }
+     span.summary{
+         .ng-invalid{
+             color: red;
+             font-weight: bold;
+         }
+         .ng-valid{
+             color: green;
+         }
+     }
+    p.error{
+        color: red;
+        font-weight: bold;
+    }
+}

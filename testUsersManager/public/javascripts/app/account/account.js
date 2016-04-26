@@ -23,4 +23,14 @@ app.controller('loginController', function ($scope, $rootScope, authService) {
             }
         });
     };
+
+    $scope.getError = function (error) {
+        if (!angular.isDefined(error)) { return; }
+        if (error.required) {
+            return 'Please provide value!';
+        }
+        else if (error.matchother) {
+            return 'Passowrds cannot be different!';
+        }
+    }
 });

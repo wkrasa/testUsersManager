@@ -45,10 +45,12 @@
 
 - switch to rest api for login/logout/register
 
-- create registration mechanism on server
++ create registration mechanism on server
 -- save users to DB
--create registration mechanism on client side 
++ create registration mechanism on client side 
 - create server mechanism for returning validation errors
+
+- add custom login cookie management: add custom 'use' module  for express (replace passport - store user in session)
 
 + jade tutorial
 + add angular
@@ -59,5 +61,7 @@
 +- add interceptor for 401 status
 + create domain model for user (mongoose)
 - request forgery token
+
+- use batarang for angular
 
 

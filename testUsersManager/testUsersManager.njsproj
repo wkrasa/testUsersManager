@@ -32,6 +32,7 @@
   <ItemGroup>
     <Compile Include="app.js" />
     <Compile Include="infrastructure\loggers.js" />
+    <Compile Include="public\javascripts\app\directives\matchOther.js" />
     <Compile Include="public\javascripts\app\infrastructure\messageBoxController.js" />
     <Compile Include="public\javascripts\app\infrastructure\messagesSrv.js" />
     <Compile Include="public\javascripts\app\main\mainController.js" />
@@ -51,6 +52,7 @@
     <Compile Include="routes\account.js" />
     <Compile Include="routes\index.js" />
     <Content Include="readme.txt" />
+    <Content Include="routes\register.jade" />
     <Content Include="views\account\register.jade" />
     <Content Include="views\account\registrationSuccessfull.jade" />
     <Content Include="views\account\test.jade" />
@@ -99,6 +101,7 @@
     <Folder Include="public\javascripts\app\account\" />
     <Folder Include="public\javascripts\app\main\" />
     <Folder Include="public\javascripts\app\infrastructure\" />
+    <Folder Include="public\javascripts\app\directives\" />
     <Folder Include="public\stylesheets\" />
     <Folder Include="routes\" />
     <Folder Include="views\" />

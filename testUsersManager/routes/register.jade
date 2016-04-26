@@ -17,7 +17,7 @@
                 .form-group
                     label(for="repeatPassword" class="col-sm-2 control-label") repeat password
                     .col-sm-10
-                        input(type="password" class="form-control" name="repeatPassword" id="repeatPassword"  ng-model="user.repeatPassword" match-other="password" required) 
+                        input(type="password" class="form-control" name="repeatPassword" id="repeatPassword" ng-model="user.repeatPassword" required) 
                         p(class="error" ng-show="registrationForm.repeatPassword.$invalid && registrationForm.repeatPassword.$dirty") {{ getError(registrationForm.repeatPassword.$error) }}
                 .form-group 
                     .col-sm-offset-2.col-sm-2
