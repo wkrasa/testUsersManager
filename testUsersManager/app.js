@@ -11,8 +11,7 @@ var http = require('http');
 var path = require('path');
 var lessMiddleware = require("less-middleware");
 var passport = require('passport');
-var tokenMgr = require('./infrastructure/passport/token');
-var initPassport = require('./infrastructure/passport/init');
+var tokenMgr = require('./infrastructure/token');
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 require('./domain/user.js');
@@ -44,13 +43,10 @@ app.use(express.methodOverride());
 app.use(express.cookieParser());
 
 app.use(express.session({ secret: tokenMgr.generateToken(32), cookie: { maxAge: 60000 } }));
-app.use(passport.initialize());
-app.use(passport.session());
-app.use(passport.authenticate('remember-me'));
+app.use(require('./infrastructure/authorization/authModule').onRequestStart);
 
 var flash = require('connect-flash');
 app.use(flash());
-initPassport(passport);
 
 app.use(app.router);
 app.use(lessMiddleware(path.join(__dirname, config.publicFolder), {

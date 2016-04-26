@@ -63,5 +63,6 @@
 - request forgery token
 
 - use batarang for angular
+- add extra request for angular, in order to perform check, if user was not logged in form cookie
 
 

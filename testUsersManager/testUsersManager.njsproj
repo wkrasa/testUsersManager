@@ -31,6 +31,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="app.js" />
+    <Compile Include="infrastructure\authorization\authModule.js" />
+    <Compile Include="infrastructure\token.js" />
     <Compile Include="infrastructure\loggers.js" />
     <Compile Include="public\javascripts\app\directives\matchOther.js" />
     <Compile Include="public\javascripts\app\infrastructure\messageBoxController.js" />
@@ -45,7 +47,6 @@
     <Compile Include="infrastructure\passport\rememberMe.js" />
     <Compile Include="infrastructure\passport\signup.js" />
     <Compile Include="infrastructure\passport\login.js" />
-    <Compile Include="infrastructure\passport\init.js" />
     <Compile Include="infrastructure\passport\token.js" />
     <Compile Include="public\javascripts\app\account\authService.js" />
     <Compile Include="public\javascripts\app\account\account.js" />
@@ -92,6 +93,7 @@
   <ItemGroup>
     <Folder Include="domain\" />
     <Folder Include="infrastructure\" />
+    <Folder Include="infrastructure\authorization\" />
     <Folder Include="infrastructure\passport\" />
     <Folder Include="public\" />
     <Folder Include="public\fonts\" />
