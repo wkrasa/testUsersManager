@@ -32,6 +32,7 @@
   <ItemGroup>
     <Compile Include="app.js" />
     <Compile Include="infrastructure\authorization\authModule.js" />
+    <Compile Include="infrastructure\dbConnection.js" />
     <Compile Include="infrastructure\token.js" />
     <Compile Include="infrastructure\loggers.js" />
     <Compile Include="public\javascripts\app\directives\matchOther.js" />

@@ -1,7 +1,7 @@
 ﻿+ login mechanism
 +- cookie login
 + config file
-- db connection menagement (mongoose) !
+- db connection menagement (mongoose) !!!
 + less
 + jade
 - bundles
@@ -10,7 +10,7 @@
 -- request addres parsing + mapping to controllers
 - REST service
 - client side validation
-- server validation mechanism
+- server validation mechanism - return dictionary with errors !!!
 - translations
 + add loggers for action, security, errors
 +- update server with loggers
@@ -46,7 +46,7 @@
 - switch to rest api for login/logout/register
 
 + create registration mechanism on server
--- save users to DB
++- save users to DB
 + create registration mechanism on client side 
 - create server mechanism for returning validation errors
 
@@ -64,5 +64,7 @@
 
 - use batarang for angular
 + add extra request for angular, in order to perform check, if user was not logged in form cookie
+
+- hash user password, when user is created and logged in
 
 

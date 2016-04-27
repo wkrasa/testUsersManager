@@ -17,6 +17,7 @@ app.controller('loginController', function ($scope, $rootScope, authService) {
     };
 }).controller('registrationController', function ($scope, $rootScope, authService) {
     $scope.register = function (userData) {
+        console.dir(userData);
         authService.register(userData, function (data) {
             if (!data.isRegistred) {
                 $scope.message = data.message;

@@ -4,13 +4,16 @@ var authModule = require('../infrastructure/authorization/authModule');
 var util = require('util');
 var BaseController = require('../infrastructure/baseController');
 
-var _user = { _id: '123', login: 'test', password: 'test' };
+var mongoose = require('mongoose');
+User = mongoose.model('User');
+
 /*
  * AccountController
  */
 var AccountController = function () {
     AccountController.super_.apply(this, arguments);
 }
+
 var proto = AccountController.prototype;
 util.inherits(AccountController, BaseController);
 
@@ -18,19 +21,25 @@ proto.login = function (req, res, next) {
     var login = req.body.login;
     var password = req.body.password;
     var rememberMe = req.body.rememberMe;
-    //TODO validate request and check user against database
-    if (login != _user.login) {
-        console.log('User Not Found with username ' + login);
-        return res.json(400, { isAuth: false, message: 'Wrong user or passowrd!' });
-    }
     
-    if (_user.password != password) {
-        console.log('Invalid Password');
-        return res.json(400, { isAuth: false, message: 'Wrong user or password!'});
-    }
-    this.loggers.logSecurity.info('User logged in: %s', login);
-    authModule.loginUser(req, res, { login: login }, rememberMe);
-    return res.json({ isAuth: true, userData: { login: login, roles: [] } });
+    User.findOne({ login: req.body.login }).exec(function (err, user) {
+        if (err) {
+            next(err);
+        }
+        else if (user == null) {
+            this.loggers.logSecurity.info('User Not Found with username ' + login);
+            return res.json(400, { isAuth: false, message: 'Wrong user or passowrd!' });
+        }
+        else if (user.password != password) {
+            this.loggers.logSecurity.info('Invalid Password');
+            return res.json(400, { isAuth: false, message: 'Wrong user or password!' });
+        }
+        else {
+            this.loggers.logSecurity.info('User logged in: %s', login);
+            authModule.loginUser(req, res, { login: login }, rememberMe);
+            return res.json({ isAuth: true, userData: { login: login, roles: [] } });
+        }
+    });
 }
 
 proto.getUserData = function (req, res, next) {
@@ -43,14 +52,44 @@ proto.getUserData = function (req, res, next) {
 
 }
 proto.register = function (req, res, next) {
-    //todo: validate user data
-    if (!req.body.login || req.body.login === 'test') {
-        res.json(400, { isRegistred: false, message: 'login already taken' });
-        return;
+    if (!req.body.login) {
+        return res.json(400, { isRegistred: false, message: 'login is required.' });
     }
-    //todo: create user here
-    this.loggers.logSecurity.info('User has registred: %s', req.body.login);
-    res.json({ isRegistred: true });
+    if (!req.body.password) {
+        return res.json(400, { isRegistred: false, message: 'password is required.' });
+    }
+    if (!req.body.repeatPassword) {
+        return res.json(400, { isRegistred: false, message: 'repeat password is required.' });
+    }
+    if (!req.body.repeatPassword) {
+        return res.json(400, { isRegistred: false, message: 'repeat password is required.' });
+    }
+    if (req.body.password !== req.body.repeatPassword) {
+        return res.json(400, { isRegistred: false, message: 'passwords have to be the same.' });
+    }
+    User.findOne({ login: req.body.login }).exec(function (err, user) {
+        if (err) {
+            next(err);
+        }
+        else if (user) {
+            return res.json(400, { isRegistred: false, message: 'login already taken.' });
+        }
+        else {
+            var newUser = new User({
+                login: req.body.login,
+                password: req.body.password,
+                email: req.body.email
+            });
+            newUser.save(function (err) {
+                if (err) {
+                    next(err);
+                } else {
+                    this.loggers.logSecurity.info('User has registred: %s', req.body.login);
+                    res.json({ isRegistred: true });
+                }
+            });          
+        }
+    });   
 }
 
 proto.logout = function (req, res) {

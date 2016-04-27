@@ -39,7 +39,12 @@ angular.module('testUsersManager')
             {
                 url: registerUrl,
                 method: 'put',
-                data: { login: userData.login, password: userData.passowrd, repeatPassword: userData.repeatPassword }
+                data: {
+                    login: userData.login,
+                    password: userData.password,
+                    repeatPassword: userData.repeatPassword ,
+                    email: userData.email
+                }
             })
             .success(function (data, status, headers, config) {
                 if (data.isRegistred) {
@@ -50,7 +55,8 @@ angular.module('testUsersManager')
                 }
             })
             .error(function (data, status, headers, config) {
-                if (afterLogin != null) { afterLogin({ isRegistred: false, message: "Connection problem, please retry" }); }
+            console.log(222);
+                if (afterLogin != null) { afterLogin({ isRegistred: data.isRegistred, message: data.message }); }
             });
     }
     

@@ -19,6 +19,11 @@
                     .col-sm-10
                         input(type="password" class="form-control" name="repeatPassword" id="repeatPassword"  ng-model="user.repeatPassword" match-other="password" required) 
                         p(class="error" ng-show="registrationForm.repeatPassword.$invalid && registrationForm.repeatPassword.$dirty") {{ getError(registrationForm.repeatPassword.$error) }}
+                .form-group
+                    label(for="email" class="col-sm-2 control-label") email
+                    .col-sm-10
+                        input(type="email" class="form-control" name="email" id="email"  ng-model="user.email" required) 
+                        p(class="error" ng-show="registrationForm.email.$invalid && registrationForm.email.$dirty") {{ getError(registrationForm.email.$error) }}
                 .form-group 
                     .col-sm-offset-2.col-sm-2
                          button(class="btn btn-default" ng-disabled="registrationForm.$invalid" type="button" ng-click="register(user)") Register

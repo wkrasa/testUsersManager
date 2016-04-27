@@ -3,10 +3,10 @@ var mongoose = require('mongoose'),
 	Schema = mongoose.Schema;
 
 var userSchema = new Schema({
-	login: String,
-	username: { type: String, required: true, unique: true },
-	password: { type: String, required: true },
-	isAdmin: Boolean,
+	login: { type: String, required: true, unique: true },
+    password: { type: String, required: true },
+    email: { type: String, required: true },
+	isAdmin: { type: Boolean, default: false },
 	created_at: Date,
 	updated_at: Date
 },
@@ -18,7 +18,6 @@ userSchema.pre('save', function (next) {
 	if (!this.created_at) {
 		this.created_at = currentDate;
 	}
-	console.log('users data updated.');
 	next();
 });
 

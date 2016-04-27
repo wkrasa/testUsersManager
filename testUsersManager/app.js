@@ -13,8 +13,9 @@ var lessMiddleware = require("less-middleware");
 var tokenMgr = require('./infrastructure/token');
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-require('./domain/user.js');
-var User = mongoose.model('User');
+
+
+//var User = mongoose.model('User');
 
 //mongoose.connect(config.dbConnectionString);
 //var db = mongoose.connection;
@@ -42,8 +43,10 @@ app.use(express.cookieParser());
 app.use(express.session({ secret: tokenMgr.generateToken(32), cookie: { maxAge: 60000 } }));
 app.use(require('./infrastructure/authorization/authModule').onRequestStart);
 
-var flash = require('connect-flash');
-app.use(flash());
+//db schema initialization
+require('./domain/user');
+//db initialization
+require('./infrastructure/dbConnection').dbInit(config.dbConnectionString);
 
 app.use(app.router);
 app.use(lessMiddleware(path.join(__dirname, config.publicFolder), {
