@@ -1,7 +1,7 @@
 ﻿+ login mechanism
 +- cookie login
 + config file
-- db connection menagement (mongoose) !!!
++ db connection menagement (mongoose) !!!
 + less
 + jade
 - bundles
@@ -11,7 +11,8 @@
 - REST service
 - client side validation
 - server validation mechanism - return dictionary with errors !!!
-- translations
+- translations 
+-- also for angular
 + add loggers for action, security, errors
 +- update server with loggers
 + check promisses tutorial
@@ -31,7 +32,7 @@
 -- create menu
 -- create main view
 -- create partial view for index/home page
--- create special route for partial views for angular
++- create special route for partial views for angular
 - use bootstrap 
 -- check bootstrap javascript for angular (modal, etc) (http://getbootstrap.com/javascript/)
 --- add directives for modal, so it can be used from angular !!!
@@ -43,7 +44,7 @@
 +- login view
 +- registration view
 
-- switch to rest api for login/logout/register
+- switch to rest api for login/logout/register !!!
 
 + create registration mechanism on server
 +- save users to DB
@@ -56,7 +57,7 @@
 + add angular
 +- ng-view
 +- ng-route
--- services for users and categories
+-- services for users and categories (resources)
 -- think over few directives, f.e. 3 state button, color selection !!!
 +- add interceptor for 401 status
 + create domain model for user (mongoose)

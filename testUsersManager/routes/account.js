@@ -31,7 +31,7 @@ proto.login = function (req, res, next) {
             return res.json(400, { isAuth: false, message: 'Wrong user or passowrd!' });
         }
         else if (user.password != password) {
-            this.loggers.logSecurity.info('Invalid Password');
+            this.loggers.logSecurity.info('Invalid password');
             return res.json(400, { isAuth: false, message: 'Wrong user or password!' });
         }
         else {

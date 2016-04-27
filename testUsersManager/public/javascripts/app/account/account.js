@@ -17,7 +17,6 @@ app.controller('loginController', function ($scope, $rootScope, authService) {
     };
 }).controller('registrationController', function ($scope, $rootScope, authService) {
     $scope.register = function (userData) {
-        console.dir(userData);
         authService.register(userData, function (data) {
             if (!data.isRegistred) {
                 $scope.message = data.message;
@@ -29,6 +28,9 @@ app.controller('loginController', function ($scope, $rootScope, authService) {
         if (!angular.isDefined(error)) { return; }
         if (error.required) {
             return 'Please provide value!';
+        }
+        else if (error.minlength) {
+            return 'Value is to short!';
         }
         else if (error.matchother) {
             return 'Passowrds cannot be different!';

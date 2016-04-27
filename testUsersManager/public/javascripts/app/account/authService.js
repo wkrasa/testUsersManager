@@ -26,6 +26,7 @@ angular.module('testUsersManager')
                 else { { $location.url(authSrv.returnUrl); } }
             }
             else {
+                data.message = data.message || "Connection problem, please retry";
                 if (afterLogin != null) { afterLogin(data); }
             }
         })
@@ -51,12 +52,12 @@ angular.module('testUsersManager')
                     $location.path(registrationSuccessfull).replace();
                 }
                 else {
+                    data.message = data.message || "Connection problem, please retry";
                     if (afterLogin != null) { afterLogin({isRegistred: data.isRegistred, message: data.message}); }
                 }
             })
             .error(function (data, status, headers, config) {
-            console.log(222);
-                if (afterLogin != null) { afterLogin({ isRegistred: data.isRegistred, message: data.message }); }
+                if (afterLogin != null) { afterLogin({ isAuth: false, message: "Connection problem, please retry" }); }
             });
     }
     
