@@ -65,8 +65,8 @@ if ('development' == app.get('env')) {
 
 /// catch 404 and forward to error handler
 app.use(function (req, res, next) {
-    loggers.logError('Not found %s', req.url);
-    var err = new Error('Not Found');
+    loggers.logError.error('Not found %s', req.url);
+    var err = new Error('Not Found:' + req.url);
     err.status = 404;
     next(err);
 });

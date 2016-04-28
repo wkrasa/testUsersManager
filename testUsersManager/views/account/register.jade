@@ -26,6 +26,13 @@
                     .col-sm-10
                         input(type="email" class="form-control" name="email" id="email"  ng-model="user.email" required ng-minlength="6") 
                         p(class="error" ng-show="registrationForm.email.$invalid && registrationForm.email.$dirty") {{ getError(registrationForm.email.$error) }}
+                .form-group
+                    label(for="email" class="col-sm-2 control-label") language
+                    .col-sm-10
+                        select(class="form-control" name="lang" id="email"  ng-model="user.lang" required) 
+                            option(value="en-GB") English
+                            option(value="de-DE") Deutsch
+                        p(class="error" ng-show="registrationForm.lang.$invalid && registrationForm.lang.$dirty") {{ getError(registrationForm.lang.$error) }}
                 .form-group 
                     .col-sm-offset-2.col-sm-2
                          button(class="btn btn-default" ng-disabled="registrationForm.$invalid" type="button" ng-click="register(user)") Register

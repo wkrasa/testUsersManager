@@ -1,12 +1,19 @@
-﻿var app = angular.module('testUsersManager');
-
-app.controller('mainController', ['$scope','$uibModal','authService','messagesSrv',
-    function ($scope, $uibModal, authService, messagesSrv) {
+﻿angular.module('testUsersManager')
+.value('defaultLang', 'en-GB')
+.controller('mainController', ['$scope', '$uibModal', 'authService', 'messagesSrv', 'localizationSrv', 'defaultLang',
+    function ($scope, $uibModal, authService, messagesSrv, localizationSrv, defaultLang) {
         $scope.user = null;
-
+        //localizationSrv.setLang(defaultLang);//todo: take it from browser
         $scope.$on('login', function () {
-            $scope.user = authService.user.login;
+            $scope.user = authService.user.login;         
+            localizationSrv.setLang(authService.user.lang || defaultLang);
         });
+        
+        $scope.$on('langChanged', function () {
+            $scope.translations = localizationSrv.translations;
+        });
+        
+
         $scope.$on('logout', function () {
             $scope.user = null;
         });

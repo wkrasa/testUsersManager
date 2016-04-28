@@ -1,7 +1,7 @@
 ﻿+ login mechanism
 +- cookie login
 + config file
-+ db connection menagement (mongoose) !!!
++ db connection menagement (mongoose)
 + less
 + jade
 - bundles
@@ -9,9 +9,9 @@
 - mvc mechanism (controllers)
 -- request addres parsing + mapping to controllers
 - REST service
-- client side validation
-- server validation mechanism - return dictionary with errors !!!
-- translations 
++ client side validation
+- server validation mechanism - validate domain models- return dictionary with errors !!!
+- translations !!! 
 -- also for angular
 + add loggers for action, security, errors
 +- update server with loggers
@@ -35,7 +35,7 @@
 +- create special route for partial views for angular
 - use bootstrap 
 -- check bootstrap javascript for angular (modal, etc) (http://getbootstrap.com/javascript/)
---- add directives for modal, so it can be used from angular !!!
++-- add directives for modal, so it can be used from angular
 +- check bootstrap tutorial
 - create layout for mobile devices !
 + create login view with bootstrap form styles

@@ -8,30 +8,31 @@ angular.module('testUsersManager')
 .value('userForbidden', '/forbidden')
 .value('registrationSuccessfull', '/registrationSuccessfull')
 
-.factory('authService', function ($rootScope, $http, $location, loginUrl, logoutUrl, registerUrl, loginPath, userForbidden, registrationSuccessfull) {
+.factory('authService', function ($rootScope, $http, $location, localizationSrv, loginUrl, logoutUrl, registerUrl, loginPath, userForbidden, registrationSuccessfull) {
     var authSrv = {};
     authSrv.user = null;
     authSrv.returnUrl = null;
     authSrv.isLoggedIn = function () {
         return authSrv.user != null;
     }
+
     authSrv.login = function (credentials, afterLogin) {
         $http.post(loginUrl, credentials)
         .success(function (data, status, headers, config) {
             if (data.isAuth) {
-                authSrv.user = { login: data.userData.login, roles: data.userData.roles };
+                authSrv.user = { login: data.userData.login, roles: data.userData.roles, lang: data.userData.lang };
                 $rootScope.$broadcast("login");
                 if (afterLogin != null) { afterLogin(data); }
                 if (authSrv.returnUrl == null) { $location.url('/'); }
                 else { { $location.url(authSrv.returnUrl); } }
             }
             else {
-                data.message = data.message || "Connection problem, please retry";
+                data.message = data.message || localizationSrv.M_ConnectionProblem;
                 if (afterLogin != null) { afterLogin(data); }
             }
         })
         .error(function (data, status, headers, config) {
-            if (afterLogin != null) { afterLogin({ isAuth: false, message: "Connection problem, please retry" }); }
+            if (afterLogin != null) { afterLogin({ isAuth: false, message: localizationSrv.M_ConnectionProblem }); }
         });
     }
     
@@ -44,7 +45,8 @@ angular.module('testUsersManager')
                     login: userData.login,
                     password: userData.password,
                     repeatPassword: userData.repeatPassword ,
-                    email: userData.email
+                    email: userData.email,
+                    lang: userData.lang
                 }
             })
             .success(function (data, status, headers, config) {
@@ -52,12 +54,12 @@ angular.module('testUsersManager')
                     $location.path(registrationSuccessfull).replace();
                 }
                 else {
-                    data.message = data.message || "Connection problem, please retry";
+                    data.message = data.message || localizationSrv.translations.M_ConnectionProblem;
                     if (afterLogin != null) { afterLogin({isRegistred: data.isRegistred, message: data.message}); }
                 }
             })
             .error(function (data, status, headers, config) {
-                if (afterLogin != null) { afterLogin({ isAuth: false, message: "Connection problem, please retry" }); }
+                if (afterLogin != null) { afterLogin({ isAuth: false, message: localizationSrv.M_ConnectionProblem }); }
             });
     }
     
@@ -71,6 +73,7 @@ angular.module('testUsersManager')
     authSrv.getLoggedUser = function () {
         return $http({ url: loginUrl, method: 'get' });
     }
+
     authSrv.checkRoles = function (userRolesArr, acceessRolesArr) {
         if (acceessRolesArr.length == 0) { return true; }
         var res = false;
@@ -93,28 +96,39 @@ angular.module('testUsersManager')
             roles: ['Admin', 'UserManager']
         });
     */
+    function applySecurity(next) {
+
+        if (next.access !== undefined && next.access.authorize === true) {
+            if (authSrv.isLoggedIn() == false) {
+                authSrv.returnUrl = next.originalPath;
+                $location.path(loginPath).replace();
+            }
+            else if (next.access.roles != null && authSrv.checkRoles(authSrv.user.roles, next.access.roles) == false) {
+                authSrv.returnUrl = next.originalPath;
+                $location.path(userForbidden).replace();
+            }
+        }
+    }
+    var primaryUserCheck = false;
+
     $rootScope.$on("$routeChangeStart", function (event, next, current) {
-        authSrv.getLoggedUser()
-        .success(function (data) {
-            if (data.login) {
-                authSrv.user = { login: data.login, roles: data.roles };
-                $rootScope.$broadcast("login");
-            }
-        })
-        .finally(function () {
-            if (next.access !== undefined && next.access.authorize === true) {
-                if (authSrv.isLoggedIn() == false) {
-                    event.preventDefault();
-                    authSrv.returnUrl = next.originalPath;
-                    $location.path(loginPath).replace();
-                }
-                else if (next.access.roles != null && authSrv.checkRoles(authSrv.user.roles, next.access.roles) == false) {
-                    event.preventDefault();
-                    authSrv.returnUrl = next.originalPath;
-                    $location.path(userForbidden).replace();
-                }
-            }
-        });
+        if (primaryUserCheck == false && !authSrv.user) {
+            primaryUserCheck = true
+            event.preventDefault();
+            authSrv.getLoggedUser()
+            .success(function (data) {
+                    if (data.login) {
+                        authSrv.user = { login: data.login, roles: data.roles, lang: data.lang };
+                        $rootScope.$broadcast("login");
+                    }
+                })
+            .finally(function () {
+                    applySecurity(next);
+                });
+        }
+        else {
+            applySecurity(next);
+        }
     });
 
     return authSrv;

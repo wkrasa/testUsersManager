@@ -36,15 +36,15 @@ proto.login = function (req, res, next) {
         }
         else {
             this.loggers.logSecurity.info('User logged in: %s', login);
-            authModule.loginUser(req, res, { login: login }, rememberMe);
-            return res.json({ isAuth: true, userData: { login: login, roles: [] } });
+            authModule.loginUser(req, res, { login: login, lang: user.lang }, rememberMe);
+            return res.json({ isAuth: true, userData: { login: login, roles: [], lang: user.lang } });
         }
     });
 }
 
 proto.getUserData = function (req, res, next) {
     if (authModule.isLoggedIn(req)) {
-        return res.json({ login: req.session.user.login, roles: [] });
+        return res.json({ login: req.session.user.login, roles: [], lang: req.session.user.lang });
     }
     else {
         return res.json({ });
@@ -67,6 +67,10 @@ proto.register = function (req, res, next) {
     if (req.body.password !== req.body.repeatPassword) {
         return res.json(400, { isRegistred: false, message: 'passwords have to be the same.' });
     }
+    if (!req.body.lang) {
+        return res.json(400, { isRegistred: false, message: 'please select language.' });
+    }
+
     User.findOne({ login: req.body.login }).exec(function (err, user) {
         if (err) {
             next(err);
@@ -78,7 +82,8 @@ proto.register = function (req, res, next) {
             var newUser = new User({
                 login: req.body.login,
                 password: req.body.password,
-                email: req.body.email
+                email: req.body.email,
+                lang: req.body.lang
             });
             newUser.save(function (err) {
                 if (err) {
