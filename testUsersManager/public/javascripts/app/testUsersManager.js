@@ -18,7 +18,8 @@
         controller: 'mainController',
         access: {
             authorize: true
-        }
+        },
+        reloadOnSearch: true
     })
     .when('/contact', {
         templateUrl: '/views/home/contact',

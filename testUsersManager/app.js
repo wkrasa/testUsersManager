@@ -12,8 +12,7 @@ var path = require('path');
 var lessMiddleware = require("less-middleware");
 var tokenMgr = require('./infrastructure/token');
 var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
-
+var I18n = require('i18n-2');
 
 //var User = mongoose.model('User');
 
@@ -32,6 +31,22 @@ var app = express();
 
 // all environments
 app.set('port', config.expressPort);
+I18n.expressBind(app, {
+    devMode: false,
+    directory: './translations',
+    extension: '.json',
+    locales: ['translations_en-GB', 'translations_de-DE']
+});
+
+app.use(function (req, res, next) {
+    var locale = 'translations_' + config.culture;
+    var user = null;
+    if (req.session) { user = req.session.user; }   
+    if (user) { 'translations_' + user.lang; }
+    req.i18n.setLocale(locale);
+    next();
+});
+
 app.set('views', path.join(__dirname, config.viewsFolder));
 app.set('view engine', 'jade');
 app.use(express.favicon());

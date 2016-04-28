@@ -4,13 +4,15 @@
 		expressPort: 3000,
 		dbConnectionString: 'mongodb://localhost:20011/testUsersManager',
 		viewsFolder: 'views',
-		publicFolder: 'public',
+        publicFolder: 'public',
+        culture: 'en-GB',
 	},
 	production: {
 		mode: 'production',
 		expressPort: 3000,
 		viewsFolder: 'views',
-		publicFolder: 'public',
+        publicFolder: 'public',
+        culture: 'en-GB',
 	}
 }
 

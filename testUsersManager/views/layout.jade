@@ -8,6 +8,8 @@ html
     link(rel='stylesheet', type='text/css', href='/stylesheets/style.css')
     script(src='/javascripts/modernizr-2.6.2.js')
   body(ng-app="testUsersManager" ng-controller="mainController")
+    h1= __("M_ConnectionProblem")
+    h1 angular:  {{translations.M_ConnectionProblem}}
     .navbar.navbar-inverse.navbar-fixed-top
       .container
         .navbar-header

@@ -8,7 +8,7 @@ angular.module('testUsersManager')
 .value('userForbidden', '/forbidden')
 .value('registrationSuccessfull', '/registrationSuccessfull')
 
-.factory('authService', function ($rootScope, $http, $location, localizationSrv, loginUrl, logoutUrl, registerUrl, loginPath, userForbidden, registrationSuccessfull) {
+.factory('authService', function ($rootScope, $http, $route, $location, localizationSrv, loginUrl, logoutUrl, registerUrl, loginPath, userForbidden, registrationSuccessfull) {
     var authSrv = {};
     authSrv.user = null;
     authSrv.returnUrl = null;
@@ -22,6 +22,7 @@ angular.module('testUsersManager')
             if (data.isAuth) {
                 authSrv.user = { login: data.userData.login, roles: data.userData.roles, lang: data.userData.lang };
                 $rootScope.$broadcast("login");
+                $route.reload();
                 if (afterLogin != null) { afterLogin(data); }
                 if (authSrv.returnUrl == null) { $location.url('/'); }
                 else { { $location.url(authSrv.returnUrl); } }

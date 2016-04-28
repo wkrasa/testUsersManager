@@ -13,7 +13,7 @@
             $rootScope.$broadcast("langChanged");
         }
         else {
-            var url = (langFilesPath + lang + '.json').replace('-', '_');
+            var url = (langFilesPath + lang + '.json');
             $http({ url: url, method: 'get' })
         .success(function (data) {
                 localizationSrv.cache[lang] = data;

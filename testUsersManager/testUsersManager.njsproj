@@ -51,14 +51,17 @@
     <Compile Include="routes\account.js" />
     <Compile Include="routes\index.js" />
     <Content Include="public\javascripts\app\translations\translations_de-DE.json" />
-    <Content Include="public\javascripts\app\translations\translations_de_DE.json" />
     <Content Include="public\javascripts\app\translations\translations_en-GB.json" />
-    <Content Include="public\javascripts\app\translations\translations_en_GB.json" />
     <Content Include="readme.txt" />
     <Content Include="routes\register.jade" />
+    <Content Include="translations\translations_de-DE.json">
+      <Publish>True</Publish>
+    </Content>
+    <Content Include="translations\translations_en-GB.json">
+      <Publish>True</Publish>
+    </Content>
     <Content Include="views\account\register.jade" />
     <Content Include="views\account\registrationSuccessfull.jade" />
-    <Content Include="views\account\test.jade" />
     <Content Include="views\other\messageBoxQuery.jade" />
   </ItemGroup>
   <ItemGroup>
@@ -96,6 +99,7 @@
     <Folder Include="domain\" />
     <Folder Include="infrastructure\" />
     <Folder Include="infrastructure\authorization\" />
+    <Folder Include="translations\" />
     <Folder Include="public\" />
     <Folder Include="public\fonts\" />
     <Folder Include="public\images\" />
