@@ -18,13 +18,14 @@
         .success(function (data) {
                 localizationSrv.cache[lang] = data;
                 localizationSrv.translations = data;
+        
                 $rootScope.$broadcast("langChanged");
             })
         .error(function (err) {
                 console.log('error while getting translation files: %s', url);
             });
         }      
-    }               
+    }                  
     
     localizationSrv.setLang('en-GB');
 

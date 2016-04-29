@@ -28,12 +28,12 @@ angular.module('testUsersManager')
                 else { { $location.url(authSrv.returnUrl); } }
             }
             else {
-                data.message = data.message || localizationSrv.M_ConnectionProblem;
+                data.message = data.message || localizationSrv.m_connectionProblem;
                 if (afterLogin != null) { afterLogin(data); }
             }
         })
         .error(function (data, status, headers, config) {
-            if (afterLogin != null) { afterLogin({ isAuth: false, message: localizationSrv.M_ConnectionProblem }); }
+            if (afterLogin != null) { afterLogin({ isAuth: false, message: localizationSrv.m_connectionProblem }); }
         });
     }
     
@@ -55,12 +55,12 @@ angular.module('testUsersManager')
                     $location.path(registrationSuccessfull).replace();
                 }
                 else {
-                    data.message = data.message || localizationSrv.translations.M_ConnectionProblem;
+                    data.message = data.message || localizationSrv.translations.m_connectionProblem;
                     if (afterLogin != null) { afterLogin({isRegistred: data.isRegistred, message: data.message}); }
                 }
             })
             .error(function (data, status, headers, config) {
-                if (afterLogin != null) { afterLogin({ isAuth: false, message: localizationSrv.M_ConnectionProblem }); }
+                if (afterLogin != null) { afterLogin({ isAuth: false, message: localizationSrv.m_connectionProblem }); }
             });
     }
     

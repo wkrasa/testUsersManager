@@ -69,13 +69,10 @@
 - hash user password, when user is created and logged in
 - change routes/controllers to use DI insted of require
 - add some funtions to request prototype, f.e. functions from authModule	
-- worm more on translations mechanism:
--- add ingore routes for css, publec, etc
+- work more on translations mechanism:
+-- add ingore routes for css, public, etc
 -- add files as link to angular app
 -- for angulars mechanism, allow nested namespaces in translation files
 -- add mechanism to separate file, so it is removed from app
--- check ng-view views refreshing, after user logs in
---- or add all translations from angular level
---- in this case add drective ng-translate, which will translate content and react on change-lang event !!!!!
 
 

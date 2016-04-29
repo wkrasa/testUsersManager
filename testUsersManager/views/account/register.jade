@@ -1,33 +1,33 @@
 ﻿div
     .panel.panel-primary
         .panel-heading
-            h3(class="panel-title") Register form  
+            h3(class="panel-title" translate) registerForm.title 
         .panel-body
             form(action="/login" method="post" name="registrationForm" class="form-horizontal" ng-model-options="{ debounce: { default: 500, blur: 0 } }")
                 div(ng-show="message" class="alert alert-danger")
                     p {{message}}
                 .form-group
-                    label(for="login" class="col-sm-2 control-label") login
+                    label(for="login" class="col-sm-2 control-label" translate) registerForm.login
                     .col-sm-10
                         input(type="text" class="form-control" name="login" id="login" ng-model="user.login" required ng-minlength="3") 
                         p(class="error" ng-show="registrationForm.login.$invalid && registrationForm.login.$dirty") {{ getError(registrationForm.login.$error) }}
                 .form-group
-                    label(for="password" class="col-sm-2 control-label") password
+                    label(for="password" class="col-sm-2 control-label" translate) registerForm.password
                     .col-sm-10
                         input(type="password" class="form-control" name="password" id="password" ng-model="user.password" required ng-minlength="3") 
                         p(class="error" ng-show="registrationForm.password.$invalid && registrationForm.password.$dirty") {{ getError(registrationForm.password.$error) }}
                 .form-group
-                    label(for="repeatPassword" class="col-sm-2 control-label") repeat password
+                    label(for="repeatPassword" class="col-sm-2 control-label" translate) registerForm.repeatPassword
                     .col-sm-10
                         input(type="password" class="form-control" name="repeatPassword" id="repeatPassword"  ng-model="user.repeatPassword" match-other="password" required ng-minlength="3") 
                         p(class="error" ng-show="registrationForm.repeatPassword.$invalid && registrationForm.repeatPassword.$dirty") {{ getError(registrationForm.repeatPassword.$error) }}
                 .form-group
-                    label(for="email" class="col-sm-2 control-label") email
+                    label(for="email" class="col-sm-2 control-label" translate) registerForm.email
                     .col-sm-10
                         input(type="email" class="form-control" name="email" id="email"  ng-model="user.email" required ng-minlength="6") 
                         p(class="error" ng-show="registrationForm.email.$invalid && registrationForm.email.$dirty") {{ getError(registrationForm.email.$error) }}
                 .form-group
-                    label(for="email" class="col-sm-2 control-label") language
+                    label(for="email" class="col-sm-2 control-label" translate) registerForm.language
                     .col-sm-10
                         select(class="form-control" name="lang" id="email"  ng-model="user.lang" required) 
                             option(value="en-GB") English
@@ -35,6 +35,6 @@
                         p(class="error" ng-show="registrationForm.lang.$invalid && registrationForm.lang.$dirty") {{ getError(registrationForm.lang.$error) }}
                 .form-group 
                     .col-sm-offset-2.col-sm-2
-                         button(class="btn btn-default" ng-disabled="registrationForm.$invalid" type="button" ng-click="register(user)") Register
+                         button(class="btn btn-default" ng-disabled="registrationForm.$invalid" type="button" ng-click="register(user)" translate) registerForm.register
                     .col-sm-4
-                         a(class="btn btn-primary" href="#/login") Cancel
+                         a(class="btn btn-primary" href="#/login" translate) registerForm.cancel

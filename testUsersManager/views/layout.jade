@@ -8,8 +8,9 @@ html
     link(rel='stylesheet', type='text/css', href='/stylesheets/style.css')
     script(src='/javascripts/modernizr-2.6.2.js')
   body(ng-app="testUsersManager" ng-controller="mainController")
-    h1= __("M_ConnectionProblem")
-    h1 angular:  {{translations.M_ConnectionProblem}}
+    h1= __("m_connectionProblem")
+    h1 angular:  {{translations.m_connectionProblem}}
+    h1(translate) m_connectionProblem
     .navbar.navbar-inverse.navbar-fixed-top
       .container
         .navbar-header
@@ -57,5 +58,6 @@ html
     script(src='/javascripts/app/infrastructure/messageBoxController.js')    
     script(src='/javascripts/app/directives/matchOther.js')   
     script(src='/javascripts/app/localizationSrv/localizationSrv.js')        
-    
+    script(src='/javascripts/app/localizationSrv/translateDirective.js')  
+
     block scripts
