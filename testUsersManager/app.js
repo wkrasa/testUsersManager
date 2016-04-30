@@ -14,18 +14,6 @@ var tokenMgr = require('./infrastructure/token');
 var mongoose = require('mongoose');
 var I18n = require('i18n-2');
 
-//var User = mongoose.model('User');
-
-//mongoose.connect(config.dbConnectionString);
-//var db = mongoose.connection;
-//db.on('error', console.error.bind(console, 'connection error:'));
-
-//db.once('open', function () {
-//	console.log('connected to: ' + config.dbConnectionString);
-//});
-//User.find({}, function (err, res) {
-
-//});
 
 var app = express();
 
@@ -95,14 +83,17 @@ app.use(function (req, res, next) {
 //    res.render('error', { error: err });
 //});
 
-var IndexController = new require('./routes/index.js');
+var IndexController = require('./routes/index.js');
 var ctrl = new IndexController();
 ctrl.init(app);
-var AccountController = new require('./routes/account.js');
+var AccountController = require('./routes/account.js');
 ctrl = new AccountController();
 ctrl.init(app);
-var ViewController = new require('./routes/view.js');
+var ViewController = require('./routes/view.js');
 ctrl = new ViewController();
+ctrl.init(app);
+var TranslationsController = require('./routes/tranlations.js');
+ctrl = new TranslationsController();
 ctrl.init(app);
 
 http.createServer(app).listen(app.get('port'), function () {

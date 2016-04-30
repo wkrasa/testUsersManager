@@ -1,3 +1,24 @@
 {
-	"m_connectionProblem":  "Connection problem, please retry!"
+  "common": {
+
+  },
+  "loginForm": {
+    "title": "Login form",
+    "login": "login",
+    "password": "password",
+    "rememberMe": "rememberMe",
+    "register": "register"
+  },
+
+  "registerForm": {
+    "title": "Register form",
+    "login": "login",
+    "password": "password",
+    "repeatPassword": "repeat password",
+    "email": "email",
+    "language":  "language",
+    "register": "register",
+    "cancel": "cancel"
+  },
+  "m_connectionProblem": "Connection problem, please retry!"
 }

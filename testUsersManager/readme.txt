@@ -11,15 +11,15 @@
 - REST service
 + client side validation
 - server validation mechanism - validate domain models- return dictionary with errors !!!
-- translations !!! 
--- also for angular
++ translations 
++- also for angular
 + add loggers for action, security, errors
 +- update server with loggers
 + check promisses tutorial
 - angular animate!
 
 - users managment app
--- crud for users
+-- crud for users !!!
 -- crud for groups
 
 -tests: see http://code.tutsplus.com/tutorials/build-a-complete-mvc-website-with-expressjs--net-34168
@@ -57,7 +57,7 @@
 + add angular
 +- ng-view
 +- ng-route
--- services for users and categories (resources)
+-- services for users and categories (resources) !!!
 -- think over few directives, f.e. 3 state button, color selection !!!
 +- add interceptor for 401 status
 + create domain model for user (mongoose)
@@ -69,10 +69,5 @@
 - hash user password, when user is created and logged in
 - change routes/controllers to use DI insted of require
 - add some funtions to request prototype, f.e. functions from authModule	
-- work more on translations mechanism:
--- add ingore routes for css, public, etc
--- add files as link to angular app
--- for angulars mechanism, allow nested namespaces in translation files
--- add mechanism to separate file, so it is removed from app
 
 

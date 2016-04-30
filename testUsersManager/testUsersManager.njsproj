@@ -42,6 +42,7 @@
     <Compile Include="public\javascripts\app\localizationSrv\translateDirective.js" />
     <Compile Include="public\javascripts\app\main\mainController.js" />
     <Compile Include="public\javascripts\ui-bootstrap-tpls-1.3.2.min.js" />
+    <Compile Include="routes\tranlations.js" />
     <Compile Include="routes\view.js" />
     <Compile Include="infrastructure\baseController.js" />
     <Compile Include="public\javascripts\app\testUsersManager.js" />
@@ -51,10 +52,7 @@
     <Compile Include="public\javascripts\app\account\account.js" />
     <Compile Include="routes\account.js" />
     <Compile Include="routes\index.js" />
-    <Content Include="public\javascripts\app\translations\translations_de-DE.json" />
-    <Content Include="public\javascripts\app\translations\translations_en-GB.json" />
     <Content Include="readme.txt" />
-    <Content Include="routes\register.jade" />
     <Content Include="translations\translations_de-DE.json">
       <Publish>True</Publish>
     </Content>
@@ -111,7 +109,6 @@
     <Folder Include="public\javascripts\app\infrastructure\" />
     <Folder Include="public\javascripts\app\directives\" />
     <Folder Include="public\javascripts\app\localizationSrv\" />
-    <Folder Include="public\javascripts\app\translations\" />
     <Folder Include="public\stylesheets\" />
     <Folder Include="routes\" />
     <Folder Include="views\" />

@@ -1,5 +1,5 @@
 ﻿angular.module('testUsersManager')
-.value('langFilesPath', '/javascripts/app/translations/translations_')
+.value('langFilesPath', '/translations/translations_')
 .factory('localizationSrv', function ($rootScope, $http, langFilesPath) {
     var localizationSrv = {};
     localizationSrv.lang = null;
@@ -13,7 +13,7 @@
             $rootScope.$broadcast("langChanged");
         }
         else {
-            var url = (langFilesPath + lang + '.json');
+            var url = (langFilesPath + lang);
             $http({ url: url, method: 'get' })
         .success(function (data) {
                 localizationSrv.cache[lang] = data;
