@@ -95,6 +95,9 @@ ctrl.init(app);
 var TranslationsController = require('./routes/tranlations.js');
 ctrl = new TranslationsController();
 ctrl.init(app);
+var UsersController = require('./routes/users.js');
+ctrl = new UsersController();
+ctrl.init(app);
 
 http.createServer(app).listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port'));

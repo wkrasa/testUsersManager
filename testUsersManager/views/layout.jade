@@ -8,6 +8,7 @@ html
     link(rel='stylesheet', type='text/css', href='/stylesheets/style.css')
     script(src='/javascripts/modernizr-2.6.2.js')
   body(ng-app="testUsersManager" ng-controller="mainController")
+    messagesDir
     h1= __("m_connectionProblem")
     h1 angular:  {{translations.m_connectionProblem}}
     h1(translate) m_connectionProblem
@@ -22,15 +23,19 @@ html
         .navbar-collapse.collapse
           ul.nav.navbar-nav
             li
-              a(href='#home') Home
+              a(href='#home' translate) topMenu.Home
             li
-              a(href='#about') About
+              a(href='#about' translate) topMenu.About
             li
-              a(href='#contact') Contact
-            li(login-hide)
-              a(href='#login' ) Login
+              a(href='#contact' translate) topMenu.Contact
             li(login-show)
-              a(href='' ng-click="logout()") Logout {{user}}
+              a(href='#users' translate) topMenu.Users
+            li(login-hide)
+              a(href='#login' translate) topMenu.Login
+            li(login-show)
+              a(href='' ng-click="logout()" ) 
+                span(translate) topMenu.Logout 
+                span  {{user}}            
     div(messages-dir style="position: absolute" class="col-sm-offset-2 col-sm-8")
     <button type="button" class="btn btn-default" ng-click="openModalYesNoCancel('/views/account/login','loginController')">Open me!</button>
     .container.body-content
@@ -59,5 +64,7 @@ html
     script(src='/javascripts/app/directives/matchOther.js')   
     script(src='/javascripts/app/localizationSrv/localizationSrv.js')        
     script(src='/javascripts/app/localizationSrv/translateDirective.js')  
+    script(src='/javascripts/app/users/users.js')        
+    script(src='/javascripts/app/users/usersService.js')  
 
     block scripts

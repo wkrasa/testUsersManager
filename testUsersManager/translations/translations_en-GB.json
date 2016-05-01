@@ -1,7 +1,16 @@
 {
   "common": {
-
   },
+
+  "topMenu": {
+    "Home": "Home",
+    "About": "About",
+    "Contact": "Contact",
+    "Login": "Login",
+    "Logout": "Logout",
+    "Users": "Users"
+  },
+
   "loginForm": {
     "title": "Login form",
     "login": "login",
@@ -16,9 +25,14 @@
     "password": "password",
     "repeatPassword": "repeat password",
     "email": "email",
-    "language":  "language",
+    "language": "language",
     "register": "register",
     "cancel": "cancel"
   },
+
+  "users": {
+    "usersListTitle":  "users list"
+  },
+
   "m_connectionProblem": "Connection problem, please retry!"
 }

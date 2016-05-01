@@ -19,8 +19,21 @@
 - angular animate!
 
 - users managment app
--- crud for users !!!
+-- crud for users
++-- ctrl + service
++-- list
+--- create
+--- update
+--- details
+--- delete
+---- groups selection
 -- crud for groups
+--- ctrl + service
+--- list
+--- create
+--- update
+--- details
+--- delete
 
 -tests: see http://code.tutsplus.com/tutorials/build-a-complete-mvc-website-with-expressjs--net-34168
 -- jasmine !	

@@ -40,6 +40,10 @@
         templateUrl: '/views/account/registrationSuccessfull',
         controller: 'registrationController'
     })
+     .when('/users', {
+        templateUrl: '/views/users/usersList',
+        controller: 'usersListController'
+    })
 	.otherwise({
 	    redirectTo: '/views/home/home'
 	});

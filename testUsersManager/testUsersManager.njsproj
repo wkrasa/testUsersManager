@@ -41,8 +41,11 @@
     <Compile Include="public\javascripts\app\localizationSrv\localizationSrv.js" />
     <Compile Include="public\javascripts\app\localizationSrv\translateDirective.js" />
     <Compile Include="public\javascripts\app\main\mainController.js" />
+    <Compile Include="public\javascripts\app\users\users.js" />
+    <Compile Include="public\javascripts\app\users\usersService.js" />
     <Compile Include="public\javascripts\ui-bootstrap-tpls-1.3.2.min.js" />
     <Compile Include="routes\tranlations.js" />
+    <Compile Include="routes\users.js" />
     <Compile Include="routes\view.js" />
     <Compile Include="infrastructure\baseController.js" />
     <Compile Include="public\javascripts\app\testUsersManager.js" />
@@ -62,6 +65,7 @@
     <Content Include="views\account\register.jade" />
     <Content Include="views\account\registrationSuccessfull.jade" />
     <Content Include="views\other\messageBoxQuery.jade" />
+    <Content Include="views\users\usersList.jade" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="public\javascripts\bootstrap.js" />
@@ -98,6 +102,7 @@
     <Folder Include="domain\" />
     <Folder Include="infrastructure\" />
     <Folder Include="infrastructure\authorization\" />
+    <Folder Include="public\javascripts\app\users\" />
     <Folder Include="translations\" />
     <Folder Include="public\" />
     <Folder Include="public\fonts\" />
@@ -114,6 +119,7 @@
     <Folder Include="views\" />
     <Folder Include="views\home\" />
     <Folder Include="views\account\" />
+    <Folder Include="views\users\" />
     <Folder Include="views\other\" />
   </ItemGroup>
   <!-- Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them. -->

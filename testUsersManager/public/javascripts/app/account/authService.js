@@ -28,12 +28,12 @@ angular.module('testUsersManager')
                 else { { $location.url(authSrv.returnUrl); } }
             }
             else {
-                data.message = data.message || localizationSrv.m_connectionProblem;
+                data.message = data.message || localizationSrv.translations.m_connectionProblem;
                 if (afterLogin != null) { afterLogin(data); }
             }
         })
         .error(function (data, status, headers, config) {
-            if (afterLogin != null) { afterLogin({ isAuth: false, message: localizationSrv.m_connectionProblem }); }
+            if (afterLogin != null) { afterLogin({ isAuth: false, message: localizationSrv.translations.m_connectionProblem }); }
         });
     }
     
@@ -60,7 +60,7 @@ angular.module('testUsersManager')
                 }
             })
             .error(function (data, status, headers, config) {
-                if (afterLogin != null) { afterLogin({ isAuth: false, message: localizationSrv.m_connectionProblem }); }
+                if (afterLogin != null) { afterLogin({ isAuth: false, message: localizationSrv.translations.m_connectionProblem }); }
             });
     }
     
