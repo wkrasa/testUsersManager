@@ -2,6 +2,7 @@
 var BaseController = require('../infrastructure/baseController.js');
 var mongoose = require('mongoose');
 User = mongoose.model('User');
+
 /*
  * Users Controller
  */
@@ -42,7 +43,7 @@ proto.init = function (app) {
     UsersController.super_.prototype.init.apply(this, arguments);
     
     app.get('/users/:id', this.getUser);
-    app.get('/users', this.usersList);
+    app.get('/users', this.isAuthenticated,  this.usersList);
     app.post('/users', this.createUser);
     app.put('/users', this.updateUser);
     app.delete('/users', this.deleteUser);

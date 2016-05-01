@@ -8,7 +8,6 @@ html
     link(rel='stylesheet', type='text/css', href='/stylesheets/style.css')
     script(src='/javascripts/modernizr-2.6.2.js')
   body(ng-app="testUsersManager" ng-controller="mainController")
-    messagesDir
     h1= __("m_connectionProblem")
     h1 angular:  {{translations.m_connectionProblem}}
     h1(translate) m_connectionProblem
@@ -37,6 +36,7 @@ html
                 span(translate) topMenu.Logout 
                 span  {{user}}            
     div(messages-dir style="position: absolute" class="col-sm-offset-2 col-sm-8")
+
     <button type="button" class="btn btn-default" ng-click="openModalYesNoCancel('/views/account/login','loginController')">Open me!</button>
     .container.body-content
       block content
@@ -66,5 +66,7 @@ html
     script(src='/javascripts/app/localizationSrv/translateDirective.js')  
     script(src='/javascripts/app/users/users.js')        
     script(src='/javascripts/app/users/usersService.js')  
+
+    script(src='/javascripts/app/directives/tabs.js') 
 
     block scripts

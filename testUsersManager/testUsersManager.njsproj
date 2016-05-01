@@ -36,6 +36,7 @@
     <Compile Include="infrastructure\token.js" />
     <Compile Include="infrastructure\loggers.js" />
     <Compile Include="public\javascripts\app\directives\matchOther.js" />
+    <Compile Include="public\javascripts\app\directives\tabs.js" />
     <Compile Include="public\javascripts\app\infrastructure\messageBoxController.js" />
     <Compile Include="public\javascripts\app\infrastructure\messagesSrv.js" />
     <Compile Include="public\javascripts\app\localizationSrv\localizationSrv.js" />
@@ -65,6 +66,8 @@
     <Content Include="views\account\register.jade" />
     <Content Include="views\account\registrationSuccessfull.jade" />
     <Content Include="views\other\messageBoxQuery.jade" />
+    <Content Include="views\other\tab.jade" />
+    <Content Include="views\other\tabs.jade" />
     <Content Include="views\users\usersList.jade" />
   </ItemGroup>
   <ItemGroup>

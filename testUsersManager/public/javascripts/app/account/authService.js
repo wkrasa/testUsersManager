@@ -137,11 +137,9 @@ angular.module('testUsersManager')
         return {
             responseError: function (rejection) {
                 if (rejection.status === 401) {
-                    console.log("Response Error 401", rejection);
                     $location.path('/login').search('returnTo', $location.path());
                 } 
-                //return $q.reject(rejection);
-                return rejection;
+                return $q.reject(rejection);
             }
         }
     }])

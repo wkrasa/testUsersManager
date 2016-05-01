@@ -8,7 +8,7 @@
 + angular
 - mvc mechanism (controllers)
 -- request addres parsing + mapping to controllers
-- REST service
++ REST service
 + client side validation
 - server validation mechanism - validate domain models- return dictionary with errors !!!
 + translations 
@@ -82,5 +82,7 @@
 - hash user password, when user is created and logged in
 - change routes/controllers to use DI insted of require
 - add some funtions to request prototype, f.e. functions from authModule	
+
+- rewrite example from book: tabs, angular
 
 
