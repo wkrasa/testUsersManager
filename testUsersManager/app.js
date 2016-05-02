@@ -48,6 +48,7 @@ app.use(require('./infrastructure/authorization/authModule').onRequestStart);
 
 //db schema initialization
 require('./domain/user');
+require('./domain/group');
 //db initialization
 require('./infrastructure/dbConnection').dbInit(config.dbConnectionString);
 
@@ -95,10 +96,12 @@ ctrl.init(app);
 var TranslationsController = require('./routes/tranlations.js');
 ctrl = new TranslationsController();
 ctrl.init(app);
+var GroupsController = require('./routes/groups.js');
+ctrl = new GroupsController();
+ctrl.init(app);
 var UsersController = require('./routes/users.js');
 ctrl = new UsersController();
 ctrl.init(app);
-
 http.createServer(app).listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port'));
     loggers.logInfo.info('Express server listening on port ' + app.get('port'));

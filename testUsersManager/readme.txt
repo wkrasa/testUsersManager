@@ -28,8 +28,8 @@
 --- delete
 ---- groups selection
 -- crud for groups
---- ctrl + service
---- list
++-- ctrl + service !!!
++-- list
 --- create
 --- update
 --- details
@@ -70,7 +70,6 @@
 + add angular
 +- ng-view
 +- ng-route
--- services for users and categories (resources) !!!
 -- think over few directives, f.e. 3 state button, color selection !!!
 +- add interceptor for 401 status
 + create domain model for user (mongoose)
@@ -83,6 +82,6 @@
 - change routes/controllers to use DI insted of require
 - add some funtions to request prototype, f.e. functions from authModule	
 
-- rewrite example from book: tabs, angular
+- rewrite example from book: d&d, angular
 
 

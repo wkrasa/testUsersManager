@@ -8,6 +8,7 @@
     "Contact": "Contact",
     "Login": "Login",
     "Logout": "Logout",
+    "Groups": "Groups",
     "Users": "Users"
   },
 
@@ -31,7 +32,11 @@
   },
 
   "users": {
-    "usersListTitle":  "users list"
+    "usersListTitle": "users list"
+  },
+
+  "groups": {
+    "groupsListTitle": "groups list"
   },
 
   "m_connectionProblem": "Connection problem, please retry!"

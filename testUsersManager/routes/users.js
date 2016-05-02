@@ -1,7 +1,7 @@
 ﻿var util = require('util');
 var BaseController = require('../infrastructure/baseController.js');
 var mongoose = require('mongoose');
-User = mongoose.model('User');
+var User = mongoose.model('User');
 
 /*
  * Users Controller

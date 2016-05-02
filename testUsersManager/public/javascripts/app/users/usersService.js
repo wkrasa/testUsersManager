@@ -22,7 +22,7 @@
     }
     
     resource.deleteUser = function (user) {
-        return new product.$delete({ id: user._id });
+        return new user.$delete({ id: user._id });
     }
     
     return resource;

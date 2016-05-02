@@ -40,9 +40,13 @@
         templateUrl: '/views/account/registrationSuccessfull',
         controller: 'registrationController'
     })
-     .when('/users', {
+    .when('/users', {
         templateUrl: '/views/users/usersList',
         controller: 'usersListController'
+    })
+    .when('/groups', {
+        templateUrl: '/views/groups/groupsList',
+        controller: 'groupsListController'
     })
 	.otherwise({
 	    redirectTo: '/views/home/home'
