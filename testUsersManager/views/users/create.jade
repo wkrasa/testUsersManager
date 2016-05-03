@@ -1,0 +1,35 @@
+﻿div
+    .panel.panel-primary
+        .panel-heading
+            h3(class="panel-title" translate) users.createUserTitle 
+        .panel-body
+            form(action="/create" method="post" name="createUserForm" class="form-horizontal" ng-model-options="{ debounce: { default: 500, blur: 0 } }")
+                div(ng-show="message" class="alert alert-danger")
+                    p {{message}}
+                .form-group
+                    label(for="login" class="col-sm-2 control-label" translate) registerForm.login
+                    .col-sm-10
+                        input(type="text" class="form-control" name="login" id="login" ng-model="user.login" required ng-minlength="3") 
+                        p(class="error" ng-show="createUserForm.login.$invalid && createUserForm.login.$dirty") {{ getError(createUserForm.login.$error) }}
+                .form-group
+                    label(for="password" class="col-sm-2 control-label" translate) registerForm.password
+                    .col-sm-10
+                        input(type="text" class="form-control" name="password" id="password" ng-model="user.password" required ng-minlength="3") 
+                        p(class="error" ng-show="createUserForm.password.$invalid && createUserForm.password.$dirty") {{ getError(createUserForm.password.$error) }}
+                .form-group
+                    label(for="email" class="col-sm-2 control-label" translate) registerForm.email
+                    .col-sm-10
+                        input(type="email" class="form-control" name="email" id="email"  ng-model="user.email" required ng-minlength="6") 
+                        p(class="error" ng-show="createUserForm.email.$invalid && createUserForm.email.$dirty") {{ getError(createUserForm.email.$error) }}
+                .form-group
+                    label(for="email" class="col-sm-2 control-label" translate) registerForm.language
+                    .col-sm-10
+                        select(class="form-control" name="lang" id="email"  ng-model="user.lang" required) 
+                            option(value="en-GB") English
+                            option(value="de-DE") Deutsch
+                        p(class="error" ng-show="createUserForm.lang.$invalid && createUserForm.lang.$dirty") {{ getError(createUserForm.lang.$error) }}
+                .form-group 
+                    .col-sm-offset-2.col-sm-2
+                         button(class="btn btn-default" ng-disabled="createUserForm.$invalid" type="button" ng-click="createUser(user)" translate) common.b_save
+                    .col-sm-4
+                         a(class="btn btn-primary" href="#/users" translate) common.b_cancel

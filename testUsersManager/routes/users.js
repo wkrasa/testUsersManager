@@ -28,7 +28,41 @@ proto.usersList = function (req, res) {
 };
 
 proto.createUser = function (req, res) {
-
+    if (!req.body.login) {
+        return res.json(400, { isRegistred: false, message: 'login is required.' });
+    }
+    if (!req.body.password) {
+        return res.json(400, { isRegistred: false, message: 'password is required.' });
+    }
+    if (!req.body.lang) {
+        return res.json(400, { isRegistred: false, message: 'please select language.' });
+    }
+    
+    User.findOne({ login: req.body.login }).exec(function (err, user) {
+        if (err) {
+            next(err);
+        }
+        else if (user) {
+            res.json(400, { isRegistred: false, message: 'login already taken.' });
+            return;
+        }
+        else {
+            var newUser = new User({
+                login: req.body.login,
+                password: req.body.password,
+                email: req.body.email,
+                lang: req.body.lang
+            });
+            newUser.save(function (err) {
+                if (err) {
+                    next(err);
+                } else {
+                    this.loggers.logSecurity.info('User was created: %s', req.body.login);
+                    res.json({ isRegistred: true });
+                }
+            });
+        }
+    }); 
 };
 
 proto.updateUser = function (req, res) {
@@ -42,11 +76,11 @@ proto.deleteUser = function (req, res) {
 proto.init = function (app) {
     UsersController.super_.prototype.init.apply(this, arguments);
     
-    app.get('/users/:id', this.getUser);
+    app.get('/users/:id', this.isAuthenticated,  this.getUser);
     app.get('/users', this.isAuthenticated,  this.usersList);
-    app.post('/users', this.createUser);
-    app.put('/users', this.updateUser);
-    app.delete('/users', this.deleteUser);
+    app.post('/users', this.isAuthenticated, this.createUser);
+    app.put('/users', this.isAuthenticated,  this.updateUser);
+    app.delete('/users', this.isAuthenticated,  this.deleteUser);
 }
 
 module.exports = UsersController;

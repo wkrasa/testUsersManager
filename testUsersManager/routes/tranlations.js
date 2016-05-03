@@ -1,4 +1,7 @@
-﻿
+﻿//h1 = __("m_connectionProblem")
+//h1 angular: { { translations.m_connectionProblem } }
+//h1(translate) m_connectionProblem
+
 var util = require('util');
 var fs = require('fs');
 var path = require('path');

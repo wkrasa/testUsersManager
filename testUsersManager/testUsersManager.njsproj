@@ -73,6 +73,7 @@
     <Content Include="views\other\messageBoxQuery.jade" />
     <Content Include="views\other\tab.jade" />
     <Content Include="views\other\tabs.jade" />
+    <Content Include="views\users\create.jade" />
     <Content Include="views\users\usersList.jade" />
   </ItemGroup>
   <ItemGroup>

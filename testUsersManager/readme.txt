@@ -20,7 +20,7 @@
 
 - users managment app
 -- crud for users
-+-- ctrl + service
++-- ctrl + servicef
 +-- list
 --- create
 --- update
@@ -62,7 +62,7 @@
 + create registration mechanism on server
 +- save users to DB
 + create registration mechanism on client side 
-- create server mechanism for returning validation errors
+- create server mechanism for returning validation errors !!!
 
 + add custom login cookie management: add custom 'use' module  for express (replace passport - store user in session)
 

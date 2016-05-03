@@ -33,7 +33,7 @@ angular.module('testUsersManager')
             }
         })
         .error(function (data, status, headers, config) {
-            if (afterLogin != null) { afterLogin({ isAuth: false, message: localizationSrv.translations.m_connectionProblem }); }
+            if (afterLogin != null) { afterLogin({ isAuth: false, message: data.message || localizationSrv.translations.m_connectionProblem }); }
         });
     }
     
@@ -60,7 +60,7 @@ angular.module('testUsersManager')
                 }
             })
             .error(function (data, status, headers, config) {
-                if (afterLogin != null) { afterLogin({ isAuth: false, message: localizationSrv.translations.m_connectionProblem }); }
+                if (afterLogin != null) { afterLogin({ isAuth: false, message: data.message || localizationSrv.translations.m_connectionProblem }); }
             });
     }
     

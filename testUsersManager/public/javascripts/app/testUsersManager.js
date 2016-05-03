@@ -40,9 +40,20 @@
         templateUrl: '/views/account/registrationSuccessfull',
         controller: 'registrationController'
     })
+    //USERS
     .when('/users', {
         templateUrl: '/views/users/usersList',
-        controller: 'usersListController'
+        controller: 'usersListController',
+        access: {
+            authorize: true
+        }
+    })
+    .when('/createUser', {
+        templateUrl: '/views/users/create',
+        controller: 'createUserController',
+        access: {
+            authorize: true
+        }
     })
     .when('/groups', {
         templateUrl: '/views/groups/groupsList',

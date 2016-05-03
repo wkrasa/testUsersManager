@@ -1,5 +1,7 @@
 {
   "common": {
+    "b_save": "save",
+    "b_cancel": "cancel"
   },
 
   "topMenu": {
@@ -32,7 +34,10 @@
   },
 
   "users": {
-    "usersListTitle": "users list"
+    "b_createUser":  "create user",
+    "usersListTitle": "users list",
+    "createUserTitle": "create user",
+    "m_userSavedOk": "User was saved successfully."
   },
 
   "groups": {

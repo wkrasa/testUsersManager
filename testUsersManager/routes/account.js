@@ -61,9 +61,6 @@ proto.register = function (req, res, next) {
     if (!req.body.repeatPassword) {
         return res.json(400, { isRegistred: false, message: 'repeat password is required.' });
     }
-    if (!req.body.repeatPassword) {
-        return res.json(400, { isRegistred: false, message: 'repeat password is required.' });
-    }
     if (req.body.password !== req.body.repeatPassword) {
         return res.json(400, { isRegistred: false, message: 'passwords have to be the same.' });
     }
