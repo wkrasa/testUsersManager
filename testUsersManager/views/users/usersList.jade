@@ -5,4 +5,5 @@
         h3(class="panel-title" translate) users.usersListTitle  
     .panel-body
         div(ng-repeat= "user in users")
-            h4 {{user.login}}
+            h4 
+                a(href="#/updateUser/{{user._id}}") {{user.login}}

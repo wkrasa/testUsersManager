@@ -37,7 +37,8 @@
     "b_createUser":  "create user",
     "usersListTitle": "users list",
     "createUserTitle": "create user",
-    "m_userSavedOk": "User was saved successfully."
+    "m_userSavedOk": "User was saved successfully.",
+    "m_userNotFound":  "User was not found."
   },
 
   "groups": {

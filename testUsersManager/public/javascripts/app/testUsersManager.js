@@ -55,6 +55,13 @@
             authorize: true
         }
     })
+    .when('/updateUser/:id', {
+        templateUrl: '/views/users/create',
+        controller: 'updateUserController',
+        access: {
+            authorize: true
+        }
+    })
     .when('/groups', {
         templateUrl: '/views/groups/groupsList',
         controller: 'groupsListController'
