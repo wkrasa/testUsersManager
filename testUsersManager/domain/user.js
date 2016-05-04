@@ -22,4 +22,8 @@ userSchema.pre('save', function (next) {
 	next();
 });
 
+//validation
+userSchema.path('login').validate(function (value) {
+    return value != null && value.length > 0;
+}, '');
 module.exports = mongoose.model('User', userSchema);

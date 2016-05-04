@@ -1,5 +1,5 @@
 ﻿angular.module('testUsersManager')
-.value('langFilesPath', '/translations/translations_')
+.value('langFilesPath', '/translations/')
 .factory('localizationSrv', function ($rootScope, $http, langFilesPath) {
     var localizationSrv = {};
     localizationSrv.lang = null;

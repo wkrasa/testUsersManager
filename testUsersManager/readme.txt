@@ -10,7 +10,11 @@
 -- request addres parsing + mapping to controllers
 + REST service
 + client side validation
-- server validation mechanism - validate domain models- return dictionary with errors !!!
+- server validation mechanism 
+-- validate domain models- return dictionary with errors !!!
+-- add new directive: error, that will require ng-model and will add proper errors basing on errors returned from server
+--- replace 'p(class="error" ng-show=...' with this directive
+--- another approach: maybe add error directive on the form level, and review all ng-models and add errors
 + translations 
 +- also for angular
 + add loggers for action, security, errors
@@ -22,8 +26,8 @@
 -- crud for users
 +-- ctrl + servicef
 +-- list
---- create
---- update
++-- create
++-- update
 --- details
 --- delete
 ---- groups selection

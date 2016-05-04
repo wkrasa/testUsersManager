@@ -36,8 +36,10 @@
     <Compile Include="infrastructure\dbConnection.js" />
     <Compile Include="infrastructure\token.js" />
     <Compile Include="infrastructure\loggers.js" />
+    <Compile Include="infrastructure\translationsManager.js" />
     <Compile Include="public\javascripts\app\directives\matchOther.js" />
     <Compile Include="public\javascripts\app\directives\tabs.js" />
+    <Compile Include="public\javascripts\app\directives\validate.js" />
     <Compile Include="public\javascripts\app\groups\groups.js" />
     <Compile Include="public\javascripts\app\groups\groupsService.js" />
     <Compile Include="public\javascripts\app\infrastructure\messageBoxController.js" />

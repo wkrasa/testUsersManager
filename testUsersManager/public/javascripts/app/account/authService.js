@@ -68,6 +68,7 @@ angular.module('testUsersManager')
         $http({ url: logoutUrl, method: 'delete'});
         authSrv.user = null;
         $rootScope.$broadcast("logout");
+        localizationSrv.setLang('en-GB');
         $location.path(loginPath).replace();
     }
     
