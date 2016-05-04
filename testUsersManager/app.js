@@ -12,26 +12,27 @@ var path = require('path');
 var lessMiddleware = require("less-middleware");
 var tokenMgr = require('./infrastructure/token');
 var mongoose = require('mongoose');
-var I18n = require('i18n-2');
+//var I18n = require('i18n-2');
+var translationsManager = require('./infrastructure/translationsManager');
 
 
 var app = express();
 
 // all environments
 app.set('port', config.expressPort);
-I18n.expressBind(app, {
-    devMode: false,
-    directory: './translations',
-    extension: '.json',
-    locales: ['translations_en-GB', 'translations_de-DE']
-});
+
+app.locals.__ = function (text) {
+    return translationsManager.translate(text);
+}
 
 app.use(function (req, res, next) {
-    var locale = 'translations_' + config.culture;
+    var cultutre = config.culture;
     var user = null;
     if (req.session) { user = req.session.user; }   
-    if (user) { 'translations_' + user.lang; }
-    req.i18n.setLocale(locale);
+    if (user) { cultutre = user.lang; }
+    // req.i18n.setLocale(locale);
+    translationsManager.setCulture(cultutre);
+  
     next();
 });
 
