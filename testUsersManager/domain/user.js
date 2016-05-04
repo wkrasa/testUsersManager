@@ -1,4 +1,5 @@
-﻿
+﻿var translationsManager = require('../infrastructure/translationsManager');
+
 var mongoose = require('mongoose'), 
 	Schema = mongoose.Schema;
 
@@ -7,7 +8,7 @@ var userSchema = new Schema({
     password: { type: String, required: true },
     email: { type: String, required: true },
     isAdmin: { type: Boolean, default: false },
-    lang: { type: String, default: 'en' },
+    lang: { type: String, default: 'en-GB' },
 	created_at: Date,
 	updated_at: Date
 },
@@ -23,7 +24,7 @@ userSchema.pre('save', function (next) {
 });
 
 //validation
-userSchema.path('login').validate(function (value) {
-    return value != null && value.length > 0;
-}, '');
+//userSchema.path('login').validate(function (value) {
+//    return value != null && value.length > 0;
+//}, '');
 module.exports = mongoose.model('User', userSchema);

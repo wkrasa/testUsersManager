@@ -14,7 +14,6 @@
     "cookie-session": "^2.0.0-alpha.1",
     "express": "3.4.4",
     "express-session": "^1.13.0",
-    "i18n-2": "^0.6.3",
     "jade": "*",
     "jasmine-node": "^1.14.5",
     "less-middleware": "^2.1.0",

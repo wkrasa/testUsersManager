@@ -7,7 +7,11 @@
     });
 
 })
-.controller('createUserController', function ($scope, $location,  usersService, messagesSrv, localizationSrv) {
+.controller('createUserController', function ($scope, $location, usersService, messagesSrv, localizationSrv) {
+    $scope.errors = {
+        login: 'login is required',
+        password: 'password is required'
+    }
     $scope.user = {};
     $scope.createUser = function (user){
         usersService.saveUser(user)
@@ -30,6 +34,8 @@
         }
         else if (error.matchother) {
             return 'Passowrds cannot be different!';
+        } else if (error.errors) {
+            return '!!!';
         }
     }
 }).controller('updateUserController', function ($scope, $routeParams, $location, usersService, messagesSrv, localizationSrv) {

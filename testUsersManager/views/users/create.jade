@@ -9,7 +9,7 @@
                 .form-group
                     label(for="login" class="col-sm-2 control-label" translate) registerForm.login
                     .col-sm-10
-                        input(type="text" class="form-control" name="login" id="login" ng-model="user.login" required ng-minlength="3") 
+                        input(type="text" class="form-control" name="login" id="login" ng-model="user.login" required ng-minlength="3" validate errors="errors") 
                         p(class="error" ng-show="createUserForm.login.$invalid && createUserForm.login.$dirty") {{ getError(createUserForm.login.$error) }}
                 .form-group
                     label(for="password" class="col-sm-2 control-label" translate) registerForm.password
