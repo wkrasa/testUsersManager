@@ -67,6 +67,7 @@
 +- save users to DB
 + create registration mechanism on client side 
 - create server mechanism for returning validation errors !!!
+-- create custom valiadtion srv and use fluent syntaxt in order to create validator objects!!!
 
 + add custom login cookie management: add custom 'use' module  for express (replace passport - store user in session)
 

@@ -3,6 +3,7 @@ var BaseController = require('../infrastructure/baseController.js');
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
 
+
 /*
  * Users Controller
  */
@@ -16,7 +17,7 @@ proto.getUser = function (req, res) {
     if (!req.params.id) {
         return res.json(404, {  message: 'user not found' });
     }
-    User.findOne({ _id: req.params.id}).exec(function (err, user) {
+    User.getByID( req.params.id, function (err, user) {
         if (err) {
             next(err);
         }
@@ -42,21 +43,21 @@ proto.usersList = function (req, res) {
 };
 
 proto.createUser = function (req, res) {
-    if (!req.body.login) {
-        return res.json(400, { isRegistred: false, message: 'login is required.' });
-    }
-    if (!req.body.password) {
-        return res.json(400, { isRegistred: false, message: 'password is required.' });
-    }
-    if (!req.body.lang) {
-        return res.json(400, { isRegistred: false, message: 'please select language.' });
-    }
+    //if (!req.body.login) {
+    //    return res.json(400, { isRegistred: false, message: 'login is required.' });
+    //}
+    //if (!req.body.password) {
+    //    return res.json(400, { isRegistred: false, message: 'password is required.' });
+    //}
+    //if (!req.body.lang) {
+    //    return res.json(400, { isRegistred: false, message: 'please select language.' });
+    //}
     
-    User.findOne({ login: req.body.login }).exec(function (err, user) {
+    User.checkLoginOccupied(req.body.login, function (err, occupied) {
         if (err) {
             next(err);
         }
-        else if (user) {
+        else if (occupied) {
             res.json(400, { isRegistred: false, message: 'login already taken.' });
             return;
         }
@@ -80,25 +81,25 @@ proto.createUser = function (req, res) {
 };
 
 proto.updateUser = function (req, res) {
-    if (!req.body.login) {
-        return res.json(400, { isRegistred: false, message: 'login is required.' });
-    }
-    if (!req.body.password) {
-        return res.json(400, { isRegistred: false, message: 'password is required.' });
-    }
-    if (!req.body.lang) {
-        return res.json(400, { isRegistred: false, message: 'please select language.' });
-    }
-    User.count({ $and: [{ login: req.body.login }, { _id: { $ne: req.body._id} }  ]}).exec(function (err, c) {
+    //if (!req.body.login) {
+    //    return res.json(400, { isRegistred: false, message: 'login is required.' });
+    //}
+    //if (!req.body.password) {
+    //    return res.json(400, { isRegistred: false, message: 'password is required.' });
+    //}
+    //if (!req.body.lang) {
+    //    return res.json(400, { isRegistred: false, message: 'please select language.' });
+    //}
+    User.checkLoginOccupied(req.body.login, req.body._id, function (err, occupied) {
         if (err) {
             next(err);
         }
-        else if (c > 0) {
+        else if (occupied) {
             res.json(400, { message: 'login already taken.' });
             return;
         }
         else {
-            User.findOne({ _id: req.body._id }).exec(function (err, updatedUser) {
+            User.getByID(req.body._id, function (err, updatedUser) {
                 if (err) {
                     next(err);
                 }
@@ -132,8 +133,8 @@ proto.init = function (app) {
     
     app.get('/users/:id', this.isAuthenticated,  this.getUser);
     app.get('/users', this.isAuthenticated,  this.usersList);
-    app.post('/users', this.isAuthenticated, this.createUser);
-    app.put('/users', this.isAuthenticated,  this.updateUser);
+    app.post('/users', this.isAuthenticated, this.validationSrv.validate('createUserValidator'), this.createUser);
+    app.put('/users', this.isAuthenticated, this.validationSrv.validate('createUserValidator'),  this.updateUser);
     app.delete('/users', this.isAuthenticated,  this.deleteUser);
 }
 

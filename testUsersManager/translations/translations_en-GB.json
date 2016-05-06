@@ -1,9 +1,16 @@
 {
   "common": {
     "b_save": "save",
-    "b_cancel": "cancel"
+    "b_cancel": "cancel",
+    "errors": {
+      "m_errRequiredField": "{0} is required.",
+      "m_errValueTooLong": "Value for field {0} cannot be longer then {1} characters.",
+      "m_errValueTooShort": "Value for field {0} cannot be shorter then {1} characters.",
+      "m_errValueTooBig": "Value for field {0} cannot be greater then {1}.",
+      "m_errValueTooSmall": "Value for field {0} has to be greater then {1}."
+    }
   },
-
+ 
   "topMenu": {
     "Home": "Home",
     "About": "About",
@@ -19,7 +26,7 @@
     "login": "login",
     "password": "password",
     "rememberMe": "rememberMe",
-    "register": "register"
+    "register": "register"   
   },
 
   "registerForm": {

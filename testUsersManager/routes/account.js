@@ -52,27 +52,31 @@ proto.getUserData = function (req, res, next) {
 
 }
 proto.register = function (req, res, next) {
-    if (!req.body.login) {
-        return res.json(400, { isRegistred: false, message: 'login is required.' });
-    }
-    if (!req.body.password) {
-        return res.json(400, { isRegistred: false, message: 'password is required.' });
-    }
-    if (!req.body.repeatPassword) {
-        return res.json(400, { isRegistred: false, message: 'repeat password is required.' });
-    }
-    if (req.body.password !== req.body.repeatPassword) {
-        return res.json(400, { isRegistred: false, message: 'passwords have to be the same.' });
-    }
-    if (!req.body.lang) {
-        return res.json(400, { isRegistred: false, message: 'please select language.' });
-    }
+    //if (!req.body.login) {
+    //    return res.json(400, { isRegistred: false, message: 'login is required.' });
+    //}
+    //if (!req.body.password) {
+    //    return res.json(400, { isRegistred: false, message: 'password is required.' });
+    //}
+    //if (!req.body.repeatPassword) {
+    //    return res.json(400, { isRegistred: false, message: 'repeat password is required.' });
+    //}
+    //if (req.body.password !== req.body.repeatPassword) {
+    //    return res.json(400, { isRegistred: false, message: 'passwords have to be the same.' });
+    //}
+    //if (!req.body.lang) {
+    //    return res.json(400, { isRegistred: false, message: 'please select language.' });
+    //}
+	
+	if (req.body.password !== req.body.repeatPassword) {
+		return res.json(400, { isRegistred: false, message: 'passwords have to be the same.' });
+	}
 
-    User.findOne({ login: req.body.login }).exec(function (err, user) {
+    User.checkLoginOccupied(req.body.login, function (err, occupied) {
         if (err) {
             next(err);
         }
-        else if (user) {
+        else if (occupied) {
             return res.json(400, { isRegistred: false, message: 'login already taken.' });
         }
         else {

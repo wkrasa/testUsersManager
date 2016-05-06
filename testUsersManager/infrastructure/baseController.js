@@ -1,7 +1,8 @@
 ﻿var authModule = require('../infrastructure/authorization/authModule');
 
-var BaseController = function () { 
-    this.loggers = require('./loggers');
+var BaseController = function () {
+	this.loggers = require('./loggers');
+	var validationSrv = require('./validationService');
 }
 var proto = BaseController.prototype;
 

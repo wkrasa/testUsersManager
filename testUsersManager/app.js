@@ -15,7 +15,6 @@ var mongoose = require('mongoose');
 //var I18n = require('i18n-2');
 var translationsManager = require('./infrastructure/translationsManager');
 
-
 var app = express();
 
 // all environments
@@ -50,6 +49,11 @@ app.use(require('./infrastructure/authorization/authModule').onRequestStart);
 //db schema initialization
 require('./domain/user');
 require('./domain/group');
+
+//validation
+var validationSrv = require('./infrastructure/validationService');
+validationSrv.registerValidatorsFolder(path.join(__dirname, 'validators'));
+
 //db initialization
 require('./infrastructure/dbConnection').dbInit(config.dbConnectionString);
 

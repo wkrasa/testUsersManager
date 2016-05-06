@@ -34,9 +34,11 @@
     <Compile Include="domain\group.js" />
     <Compile Include="infrastructure\authorization\authModule.js" />
     <Compile Include="infrastructure\dbConnection.js" />
+    <Compile Include="infrastructure\errorContainer.js" />
     <Compile Include="infrastructure\token.js" />
     <Compile Include="infrastructure\loggers.js" />
     <Compile Include="infrastructure\translationsManager.js" />
+    <Compile Include="infrastructure\validationService.js" />
     <Compile Include="public\javascripts\app\directives\matchOther.js" />
     <Compile Include="public\javascripts\app\directives\tabs.js" />
     <Compile Include="public\javascripts\app\directives\validate.js" />
@@ -50,9 +52,11 @@
     <Compile Include="public\javascripts\app\users\users.js" />
     <Compile Include="public\javascripts\app\users\usersService.js" />
     <Compile Include="public\javascripts\ui-bootstrap-tpls-1.3.2.min.js" />
+    <Compile Include="public\javascripts\utils.js" />
     <Compile Include="routes\groups.js" />
     <Compile Include="routes\tranlations.js" />
     <Compile Include="routes\users.js" />
+    <Compile Include="validators\createUserValidator.js" />
     <Compile Include="routes\view.js" />
     <Compile Include="infrastructure\baseController.js" />
     <Compile Include="public\javascripts\app\testUsersManager.js" />
@@ -115,6 +119,7 @@
     <Folder Include="infrastructure\authorization\" />
     <Folder Include="public\javascripts\app\groups\" />
     <Folder Include="public\javascripts\app\users\" />
+    <Folder Include="validators\" />
     <Folder Include="translations\" />
     <Folder Include="public\" />
     <Folder Include="public\fonts\" />
