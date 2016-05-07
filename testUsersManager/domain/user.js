@@ -27,24 +27,30 @@ userSchema.pre('save', function (next) {
 });
 
 
-var User = mongoose.model('User', userSchema);
+
 //static methods
-userSchema.methods.getByID = function (id, cb) {
+userSchema.statics.getByID = function (id, cb) {
 	var count = User.findOne({ _id: id }).exec(cb);
 	return count > 0;
 }
-userSchema.methods.validate = function (user) {
 
-}
-
-userSchema.methods.checkLoginOccupied = function (login, id, cb) {
+userSchema.statics.checkLoginOccupied = function (login, id, cb) {
 	if (!login) {
 		return false;
 	}
-	var count = User.count({
-		$and: [{ login: ogin }, { _id: { $ne: id } }]
-	}).exec(cb);
-	return count > 0;
+    if (id) {
+        count = User.count({
+            $and: [{ login: login }, { _id: { $ne: id } }]
+        }).exec(function (err, count) {
+            cb(err, count > 0)
+        });
+    }
+    else {
+         User.count({ login: login }).exec(function (err, count) {
+            cb(err, count > 0)
+        });
+    }
 }
 
+var User = mongoose.model('User', userSchema);
 module.exports = User;

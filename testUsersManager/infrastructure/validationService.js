@@ -29,7 +29,7 @@ var service = {
 						return next(err);
 					}
 					else if (errContainer.hasErrors()) {
-						return res.json(401, errContainer.toJson())
+                        return res.json(400, errContainer.getErrors());
 					}
 					else {
 						return next();

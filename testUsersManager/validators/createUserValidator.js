@@ -31,13 +31,16 @@ module.exports = function (req, errContainer, next) {
 		errContainer.addError('lang', 'm_errRequiredField');
 	}
 	
-	User.checkLoginOccupied(req.body.login, function (err, occupied) {
+	User.checkLoginOccupied(req.body.login, req.body._id, function (err, occupied) {
 		if (err) {
 			next(err);
 		}
 		else if (occupied) {
 			errContainer.addError('lang', 'login already taken.');
 			next();
-		}
+        }
+        else {
+            next();
+        }
 	});
 }

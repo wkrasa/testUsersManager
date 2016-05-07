@@ -42,42 +42,22 @@ proto.usersList = function (req, res) {
     });
 };
 
-proto.createUser = function (req, res) {
-    //if (!req.body.login) {
-    //    return res.json(400, { isRegistred: false, message: 'login is required.' });
-    //}
-    //if (!req.body.password) {
-    //    return res.json(400, { isRegistred: false, message: 'password is required.' });
-    //}
-    //if (!req.body.lang) {
-    //    return res.json(400, { isRegistred: false, message: 'please select language.' });
-    //}
-    
-    User.checkLoginOccupied(req.body.login, function (err, occupied) {
+proto.createUser = function (req, res) { 
+    var newUser = new User({
+        login: req.body.login,
+        password: req.body.password,
+        email: req.body.email,
+        lang: req.body.lang
+    });
+    newUser.save(function (err) {
         if (err) {
             next(err);
+        } else {
+            this.loggers.logSecurity.info('User was created: %s', req.body.login);
+            res.json({ isRegistred: true });
         }
-        else if (occupied) {
-            res.json(400, { isRegistred: false, message: 'login already taken.' });
-            return;
-        }
-        else {
-            var newUser = new User({
-                login: req.body.login,
-                password: req.body.password,
-                email: req.body.email,
-                lang: req.body.lang
-            });
-            newUser.save(function (err) {
-                if (err) {
-                    next(err);
-                } else {
-                    this.loggers.logSecurity.info('User was created: %s', req.body.login);
-                    res.json({ isRegistred: true });
-                }
-            });
-        }
-    }); 
+    });
+        
 };
 
 proto.updateUser = function (req, res) {

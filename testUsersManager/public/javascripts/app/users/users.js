@@ -8,10 +8,14 @@
 
 })
 .controller('createUserController', function ($scope, $location, usersService, messagesSrv, localizationSrv) {
-    $scope.errors = {
-        login: 'login is required',
-        password: 'password is required'
-    }
+    //$scope.errors = {
+    //    login: ['login is required', '22222'],
+    //    password: ['password is required']
+    //}
+    //$scope.aaaa = function () {
+    //    $scope.errors = { login: ['aaaa'] };
+    //    console.dir($scope.errors);
+    //};
     $scope.user = {};
     $scope.createUser = function (user){
         usersService.saveUser(user)
@@ -19,8 +23,9 @@
                 $location.url('/users');
                 messagesSrv.addMessageInfo(localizationSrv.translations.users.m_userSavedOk);
         },
-           function (response) {//error
-                $scope.message = response.data.message || localizationSrv.translations.m_connectionProblem;
+        function (response) {//error
+            $scope.message = response.data.message;// || localizationSrv.translations.m_connectionProblem;
+            $scope.errors = response.data.errors;
         });
     }
 

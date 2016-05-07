@@ -10,15 +10,15 @@ ErrorContainer.prototype.addError = function (name, message) {
 }
 
 ErrorContainer.prototype.hasErrors = function () {
-	for (var prop in this) {
-		if (!this.hasOwnProperty(prop)) continue;
+	for (var prop in this.errors) {
+		if (!this.errors.hasOwnProperty(prop)) continue;
 		return true;
 	}
 	return false;
 }
 
-ErrorContainer.prototype.toJson = function () {
-	return JSON.stringify(this.errors);
+ErrorContainer.prototype.getErrors = function () {
+    return this.errors;
 }
 
 module.exports = ErrorContainer;

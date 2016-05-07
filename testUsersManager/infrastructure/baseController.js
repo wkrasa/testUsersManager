@@ -2,7 +2,7 @@
 
 var BaseController = function () {
 	this.loggers = require('./loggers');
-	var validationSrv = require('./validationService');
+	this.validationSrv = require('./validationService');
 }
 var proto = BaseController.prototype;
 
