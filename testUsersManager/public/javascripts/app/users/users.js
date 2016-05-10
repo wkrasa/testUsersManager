@@ -12,10 +12,6 @@
     //    login: ['login is required', '22222'],
     //    password: ['password is required']
     //}
-    //$scope.aaaa = function () {
-    //    $scope.errors = { login: ['aaaa'] };
-    //    console.dir($scope.errors);
-    //};
     $scope.user = {};
     $scope.createUser = function (user){
         usersService.saveUser(user)
@@ -29,20 +25,20 @@
         });
     }
 
-    $scope.getError = function (error) {
-        if (!angular.isDefined(error)) { return; }
-        if (error.required) {
-            return 'Please provide value!';
-        }
-        else if (error.minlength) {
-            return 'Value is to short!';
-        }
-        else if (error.matchother) {
-            return 'Passowrds cannot be different!';
-        } else if (error.errors) {
-            return '!!!';
-        }
-    }
+    //$scope.getError = function (error) {
+    //    if (!angular.isDefined(error)) { return; }
+    //    if (error.required) {
+    //        return 'Please provide value!';
+    //    }
+    //    else if (error.minlength) {
+    //        return 'Value is to short!';
+    //    }
+    //    else if (error.matchother) {
+    //        return 'Passowrds cannot be different!';
+    //    } else if (error.errors) {
+    //        return '!!!';
+    //    }
+    //}
 }).controller('updateUserController', function ($scope, $routeParams, $location, usersService, messagesSrv, localizationSrv) {
     usersService.getUserByID($routeParams.id)
              .then(function (data) {
@@ -69,16 +65,16 @@
         });
     }
     
-    $scope.getError = function (error) {
-        if (!angular.isDefined(error)) { return; }
-        if (error.required) {
-            return 'Please provide value!';
-        }
-        else if (error.minlength) {
-            return 'Value is to short!';
-        }
-        else if (error.matchother) {
-            return 'Passowrds cannot be different!';
-        }
-    }
+    //$scope.getError = function (error) {
+    //    if (!angular.isDefined(error)) { return; }
+    //    if (error.required) {
+    //        return 'Please provide value!';
+    //    }
+    //    else if (error.minlength) {
+    //        return 'Value is to short!';
+    //    }
+    //    else if (error.matchother) {
+    //        return 'Passowrds cannot be different!';
+    //    }
+    //}
 })

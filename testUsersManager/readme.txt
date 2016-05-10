@@ -15,6 +15,7 @@
 -- add new directive: error, that will require ng-model and will add proper errors basing on errors returned from server
 --- replace 'p(class="error" ng-show=...' with this directive
 --- another approach: maybe add error directive on the form level, and review all ng-models and add errors
+---! add form controller to validate directive - watch errors variable
 + translations 
 +- also for angular
 + add loggers for action, security, errors
@@ -88,5 +89,6 @@
 - add some funtions to request prototype, f.e. functions from authModule	
 
 - rewrite example from book: d&d, angular
+- check how angular creates bindigs and applies watch function
 
 

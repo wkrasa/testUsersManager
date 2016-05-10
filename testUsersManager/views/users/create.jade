@@ -1,5 +1,4 @@
 ﻿div
-    <button type="button" class="btn btn-default" ng-click="aaaa()">aaaa!</button>
     .panel.panel-primary
         .panel-heading
             h3(class="panel-title" translate) users.createUserTitle 
@@ -11,24 +10,20 @@
                     label(for="login" class="col-sm-2 control-label" translate) registerForm.login
                     .col-sm-10
                         input(type="text" class="form-control" name="login" id="login" ng-model="user.login" required ng-minlength="3" validate errors="errors") 
-                        p(class="error" ng-show="createUserForm.login.$invalid && createUserForm.login.$dirty") {{ getError(createUserForm.login.$error) }}
                 .form-group
                     label(for="password" class="col-sm-2 control-label" translate) registerForm.password
                     .col-sm-10
-                        input(type="text" class="form-control" name="password" id="password" ng-model="user.password" required ng-minlength="3") 
-                        p(class="error" ng-show="createUserForm.password.$invalid && createUserForm.password.$dirty") {{ getError(createUserForm.password.$error) }}
+                        input(type="text" class="form-control" name="password" id="password" ng-model="user.password" required ng-minlength="3" validate errors="errors")                        
                 .form-group
                     label(for="email" class="col-sm-2 control-label" translate) registerForm.email
                     .col-sm-10
-                        input(type="email" class="form-control" name="email" id="email"  ng-model="user.email" required ng-minlength="6") 
-                        p(class="error" ng-show="createUserForm.email.$invalid && createUserForm.email.$dirty") {{ getError(createUserForm.email.$error) }}
+                        input(type="email" class="form-control" name="email" id="email"  ng-model="user.email" required ng-minlength="6" validate errors="errors") 
                 .form-group
                     label(for="email" class="col-sm-2 control-label" translate) registerForm.language
                     .col-sm-10
-                        select(class="form-control" name="lang" id="email"  ng-model="user.lang" required) 
+                        select(class="form-control" name="lang" id="email"  ng-model="user.lang" required validate errors="errors") 
                             option(value="en-GB") English
-                            option(value="de-DE") Deutsch
-                        p(class="error" ng-show="createUserForm.lang.$invalid && createUserForm.lang.$dirty") {{ getError(createUserForm.lang.$error) }}
+                            option(value="de-DE") Deutsch                      
                 .form-group 
                     .col-sm-offset-2.col-sm-2
                          button(class="btn btn-default" ng-disabled="createUserForm.$invalid" type="button" ng-click="createUser(user)" translate) common.b_save
