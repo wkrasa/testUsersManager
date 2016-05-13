@@ -6,8 +6,10 @@ var BaseController = require('../infrastructure/baseController.js');
 var ViewController = function () {
     ViewController.super_.apply(this, arguments);
 }
-var proto = ViewController.prototype;
+
 util.inherits(ViewController, BaseController);
+
+var proto = ViewController.prototype;
 
 proto.view = function (req, res) {
     var ctrl = req.params.ctrl;

@@ -9,8 +9,9 @@ var Group = mongoose.model('Group');
 var GroupsController = function () {
     GroupsController.super_.apply(this, arguments);
 }
-var proto = GroupsController.prototype;
 util.inherits(GroupsController, BaseController);
+
+var proto = GroupsController.prototype;
 
 proto.getGroup = function (req, res) {
 

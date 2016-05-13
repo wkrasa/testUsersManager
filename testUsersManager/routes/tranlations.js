@@ -14,8 +14,9 @@ var TranslationsController = function () {
     TranslationsController.super_.apply(this, arguments);
 }
 
-var proto = TranslationsController.prototype;
 util.inherits(TranslationsController, BaseController);
+
+var proto = TranslationsController.prototype;
 
 proto.getTranlations = function (req, res, next) {
     //var fileName = req.params.file;

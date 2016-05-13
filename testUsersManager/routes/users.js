@@ -10,8 +10,10 @@ var User = mongoose.model('User');
 var UsersController = function () {
     UsersController.super_.apply(this, arguments);
 }
-var proto = UsersController.prototype;
+
 util.inherits(UsersController, BaseController);
+
+var proto = UsersController.prototype;
 
 proto.getUser = function (req, res) {
     if (!req.params.id) {

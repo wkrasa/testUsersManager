@@ -14,8 +14,9 @@ var AccountController = function () {
     AccountController.super_.apply(this, arguments);
 }
 
-var proto = AccountController.prototype;
 util.inherits(AccountController, BaseController);
+
+var proto = AccountController.prototype;
 
 proto.login = function (req, res, next) {
     var login = req.body.login;

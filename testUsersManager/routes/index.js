@@ -6,11 +6,13 @@ var BaseController = require('../infrastructure/baseController.js');
 var IndexController = function () {
     IndexController.super_.apply(this, arguments);
 }
-var proto = IndexController.prototype;
+
 util.inherits(IndexController, BaseController);
 
+var proto = IndexController.prototype;
+
 proto.index = function (req, res, next) {
-    this.loggers.logInfo.info('index.index requested');
+    //this.loggers.logInfo.info('index.index requested');
     res.render('index', {
         title: 'Express',
         year: new Date().getFullYear()

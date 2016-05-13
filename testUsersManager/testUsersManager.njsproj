@@ -66,6 +66,10 @@
     <Compile Include="public\javascripts\app\account\account.js" />
     <Compile Include="routes\account.js" />
     <Compile Include="routes\index.js" />
+    <Compile Include="_tests\other.js">
+      <SubType>Code</SubType>
+      <TestFramework>Mocha</TestFramework>
+    </Compile>
     <Content Include="readme.txt" />
     <Content Include="translations\translations_de-DE.json">
       <Publish>True</Publish>
@@ -117,6 +121,7 @@
     <Folder Include="domain\" />
     <Folder Include="infrastructure\" />
     <Folder Include="infrastructure\authorization\" />
+    <Folder Include="_tests\" />
     <Folder Include="public\javascripts\app\groups\" />
     <Folder Include="public\javascripts\app\users\" />
     <Folder Include="validators\" />
