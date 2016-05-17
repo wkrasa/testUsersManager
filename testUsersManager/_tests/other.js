@@ -41,4 +41,4 @@ describe('Welcome Controller Tests', function () {
 		
 		app.handle(request, response)
 	})
-});
+}); 
