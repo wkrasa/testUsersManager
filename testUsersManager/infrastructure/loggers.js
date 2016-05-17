@@ -1,4 +1,6 @@
 ﻿var log4js = require('log4js'); // include log4js
+var fs = require('fs');
+var path = require('path');
 
 log4js.configure({
  // configure to use all types in different files.
@@ -50,7 +52,16 @@ log4js.configure({
     ]
 });
 
-module.exports.logError = log4js.getLogger('error'); 
-module.exports.logSecurity = log4js.getLogger('security');
-module.exports.logAction = log4js.getLogger('action');
-module.exports.logInfo = log4js.getLogger('info');
+var logsDir = path.join(__dirname, '../logs');
+if (!fs.existsSync(logsDir)) {
+	fs.mkdirSync(logsDir);
+}
+
+var loggers = {
+	logError: log4js.getLogger('error'),
+	logSecurity: log4js.getLogger('security'),
+	logAction: log4js.getLogger('action'),
+	logInfo: log4js.getLogger('info')
+}
+
+module.exports = loggers;

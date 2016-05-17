@@ -1,20 +1,18 @@
-﻿var tokenMgr = require('../infrastructure/token');
+﻿var mongoose = require('mongoose');
+var util = require('util');
+var tokenMgr = require('../infrastructure/token');
+var loggers = require('../infrastructure/loggers');
+var validationSrv = require('../infrastructure/validationService');
 var authModule = require('../infrastructure/authorization/authModule');
 
-var util = require('util');
-var BaseController = require('../infrastructure/baseController');
 
-var mongoose = require('mongoose');
 User = mongoose.model('User');
 
 /*
  * AccountController
  */
 var AccountController = function () {
-    AccountController.super_.apply(this, arguments);
 }
-
-util.inherits(AccountController, BaseController);
 
 var proto = AccountController.prototype;
 
@@ -28,15 +26,15 @@ proto.login = function (req, res, next) {
             next(err);
         }
         else if (user == null) {
-            this.loggers.logSecurity.info('User Not Found with username ' + login);
+            loggers.logSecurity.info('User Not Found with username ' + login);
             return res.json(400, { isAuth: false, message: 'Wrong user or passowrd!' });
         }
         else if (user.password != password) {
-            this.loggers.logSecurity.info('Invalid password');
+            loggers.logSecurity.info('Invalid password');
             return res.json(400, { isAuth: false, message: 'Wrong user or password!' });
         }
         else {
-            this.loggers.logSecurity.info('User logged in: %s', login);
+            loggers.logSecurity.info('User logged in: %s', login);
             authModule.loginUser(req, res, { login: login, lang: user.lang }, rememberMe);
             return res.json({ isAuth: true, userData: { login: login, roles: [], lang: user.lang } });
         }
@@ -52,28 +50,12 @@ proto.getUserData = function (req, res, next) {
     }
 
 }
-proto.register = function (req, res, next) {
-    //if (!req.body.login) {
-    //    return res.json(400, { isRegistred: false, message: 'login is required.' });
-    //}
-    //if (!req.body.password) {
-    //    return res.json(400, { isRegistred: false, message: 'password is required.' });
-    //}
-    //if (!req.body.repeatPassword) {
-    //    return res.json(400, { isRegistred: false, message: 'repeat password is required.' });
-    //}
-    //if (req.body.password !== req.body.repeatPassword) {
-    //    return res.json(400, { isRegistred: false, message: 'passwords have to be the same.' });
-    //}
-    //if (!req.body.lang) {
-    //    return res.json(400, { isRegistred: false, message: 'please select language.' });
-    //}
-	
+proto.register = function (req, res, next) {	
 	if (req.body.password !== req.body.repeatPassword) {
 		return res.json(400, { isRegistred: false, message: 'passwords have to be the same.' });
 	}
 
-    User.checkLoginOccupied(req.body.login, function (err, occupied) {
+    User.checkLoginOccupied(req.body.login, null, function (err, occupied) {
         if (err) {
             next(err);
         }
@@ -91,7 +73,7 @@ proto.register = function (req, res, next) {
                 if (err) {
                     next(err);
                 } else {
-                    this.loggers.logSecurity.info('User has registred: %s', req.body.login);
+                    loggers.logSecurity.info('User has registred: %s', req.body.login);
                     res.json({ isRegistred: true });
                 }
             });          
@@ -99,15 +81,13 @@ proto.register = function (req, res, next) {
     });   
 }
 
-proto.logout = function (req, res) {
+proto.logout = function (req, res, next) {
     this.loggers.logSecurity.info('User logged out: %s', req.session.user.login);
     authModule.logoutUser(req, res);
     res.json({});
 };
 
-proto.init = function (app) {
-    AccountController.super_.prototype.init.apply(this, arguments);
-    
+proto.init = function (app) { 
     app.post('/login', this.login);
     app.get('/login', this.getUserData); 
     app.delete('/logout', this.logout);

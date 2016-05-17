@@ -26,8 +26,6 @@ userSchema.pre('save', function (next) {
 	next();
 });
 
-
-
 //static methods
 userSchema.statics.getByID = function (id, cb) {
 	var count = User.findOne({ _id: id }).exec(cb);

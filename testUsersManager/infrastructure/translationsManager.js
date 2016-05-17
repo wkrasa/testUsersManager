@@ -29,7 +29,7 @@ module.exports = {
     setCulture: function (culture){
         currentCulture = culture;
     },
-
+		
     translate: function (text){
         var translation = this.getTranlations()[text];
         if (!translation) {

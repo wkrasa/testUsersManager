@@ -1,5 +1,6 @@
 ﻿var fs = require('fs');
 var path = require('path');
+var httpStatus = require('http-status');
 
 var ErrorContainer = require('./errorContainer');
 
@@ -29,7 +30,7 @@ var service = {
 						return next(err);
 					}
 					else if (errContainer.hasErrors()) {
-                        return res.json(400, errContainer.getErrors());
+                        return res.json(httpStatus.BAD_REQUEST, errContainer.getErrors());
 					}
 					else {
 						return next();

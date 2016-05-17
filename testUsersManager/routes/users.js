@@ -1,21 +1,19 @@
 ﻿var util = require('util');
-var BaseController = require('../infrastructure/baseController.js');
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
-
+var loggers = require('../infrastructure/loggers');
+var validationSrv = require('../infrastructure/validationService');
+var authModule = require('../infrastructure/authorization/authModule');
 
 /*
  * Users Controller
  */
 var UsersController = function () {
-    UsersController.super_.apply(this, arguments);
 }
-
-util.inherits(UsersController, BaseController);
 
 var proto = UsersController.prototype;
 
-proto.getUser = function (req, res) {
+proto.getUser = function (req, res, next) {
     if (!req.params.id) {
         return res.json(404, {  message: 'user not found' });
     }
@@ -33,7 +31,7 @@ proto.getUser = function (req, res) {
     }); 
 };
 
-proto.usersList = function (req, res) {
+proto.usersList = function (req, res, next) {
     User.find().exec(function (err, users) {
         if (err) {
             next(err);
@@ -44,7 +42,7 @@ proto.usersList = function (req, res) {
     });
 };
 
-proto.createUser = function (req, res) { 
+proto.createUser = function (req, res, next) { 
     var newUser = new User({
         login: req.body.login,
         password: req.body.password,
@@ -55,23 +53,14 @@ proto.createUser = function (req, res) {
         if (err) {
             next(err);
         } else {
-            this.loggers.logSecurity.info('User was created: %s', req.body.login);
+            loggers.logSecurity.info('User was created: %s', req.body.login);
             res.json({ isRegistred: true });
         }
     });
         
 };
 
-proto.updateUser = function (req, res) {
-    //if (!req.body.login) {
-    //    return res.json(400, { isRegistred: false, message: 'login is required.' });
-    //}
-    //if (!req.body.password) {
-    //    return res.json(400, { isRegistred: false, message: 'password is required.' });
-    //}
-    //if (!req.body.lang) {
-    //    return res.json(400, { isRegistred: false, message: 'please select language.' });
-    //}
+proto.updateUser = function (req, res, next) {
     User.checkLoginOccupied(req.body.login, req.body._id, function (err, occupied) {
         if (err) {
             next(err);
@@ -97,7 +86,7 @@ proto.updateUser = function (req, res) {
                     if (err) {
                         next(err);
                     } else {
-                        this.loggers.logSecurity.info('User was updated: %s', req.body.login);
+                        loggers.logSecurity.info('User was updated: %s', req.body.login);
                         res.json({});
                     }
                 });
@@ -106,18 +95,16 @@ proto.updateUser = function (req, res) {
     }); 
 };
 
-proto.deleteUser = function (req, res) {
+proto.deleteUser = function (req, res, next) {
 
 };
 
 proto.init = function (app) {
-    UsersController.super_.prototype.init.apply(this, arguments);
-    
-    app.get('/users/:id', this.isAuthenticated,  this.getUser);
-    app.get('/users', this.isAuthenticated,  this.usersList);
-    app.post('/users', this.isAuthenticated, this.validationSrv.validate('createUserValidator'), this.createUser);
-    app.put('/users', this.isAuthenticated, this.validationSrv.validate('createUserValidator'),  this.updateUser);
-    app.delete('/users', this.isAuthenticated,  this.deleteUser);
+    app.get('/users/:id', authModule.isAuthenticated,  this.getUser);
+    app.get('/users', authModule.isAuthenticated,  this.usersList);
+    app.post('/users', authModule.isAuthenticated, validationSrv.validate('createUserValidator'), this.createUser);
+    app.put('/users', authModule.isAuthenticated, validationSrv.validate('createUserValidator'),  this.updateUser);
+    app.delete('/users', authModule.isAuthenticated,  this.deleteUser);
 }
 
 module.exports = UsersController;
