@@ -6,15 +6,11 @@
 + jade
 - bundles
 + angular
-- mvc mechanism (controllers)
--- request addres parsing + mapping to controllers
 + REST service
 + client side validation
-- server validation mechanism 
--- validate domain models- return dictionary with errors !!!
--- add new directive: error, that will require ng-model and will add proper errors basing on errors returned from server
---- replace 'p(class="error" ng-show=...' with this directive
---- another approach: maybe add error directive on the form level, and review all ng-models and add errors
++ server validation mechanism 
++- add new directive: error, that will require ng-model and will add proper errors basing on errors returned from server
++-- another approach: maybe add error directive on the form level, and review all ng-models and add errors
 + translations 
 +- also for angular
 + add loggers for action, security, errors
@@ -61,13 +57,11 @@
 +- login view
 +- registration view
 
-- switch to rest api for login/logout/register !!!
-
 + create registration mechanism on server
 +- save users to DB
 + create registration mechanism on client side 
-- create server mechanism for returning validation errors !!!
--- create custom valiadtion srv and use fluent syntaxt in order to create validator objects!!!
++ create server mechanism for returning validation errors
++- create custom valiadtion srv and use fluent syntaxt in order to create validator objects!!!
 
 + add custom login cookie management: add custom 'use' module  for express (replace passport - store user in session)
 
@@ -83,7 +77,6 @@
 - use batarang for angular
 + add extra request for angular, in order to perform check, if user was not logged in form cookie
 
-- hash user password, when user is created and logged in
 - change routes/controllers to use DI insted of require
 - add some funtions to request prototype, f.e. functions from authModule	
 

@@ -65,5 +65,19 @@
             //}, function () {
             //    $log.info('Modal dismissed at: ' + new Date());
             //});
-        };
+		};
+
+
+		//animation test
+
+		$scope.testAnimation = function () {
+			if ($scope.showMe == true) {
+				$scope.showMe = false;
+				$scope.myCssVar = null;
+			}
+			else {
+				$scope.showMe = true;
+				$scope.myCssVar = 'css-class';
+			}
+		}
 }]);

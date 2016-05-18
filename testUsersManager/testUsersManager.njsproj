@@ -71,6 +71,7 @@
       <TestFramework>Mocha</TestFramework>
     </Compile>
     <Compile Include="_tests\infrastructure\loggersMock.js" />
+    <Content Include="public\stylesheets\animations.css" />
     <Content Include="readme.txt" />
     <Content Include="translations\translations_de-DE.json">
       <Publish>True</Publish>

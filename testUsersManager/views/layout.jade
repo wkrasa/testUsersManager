@@ -6,8 +6,11 @@ html
     title #{title} - My Express Application
     link(rel='stylesheet', type='text/css', href='/stylesheets/bootstrap.min.css')
     link(rel='stylesheet', type='text/css', href='/stylesheets/style.css')
+    link(rel='stylesheet', type='text/css', href='/stylesheets/animations.css')
     script(src='/javascripts/modernizr-2.6.2.js')
   body(ng-app="testUsersManager" ng-controller="mainController")
+    button(ng-click="testAnimation()") click me
+    div(style="width: 200px; height: 200px; "  ng-class="myCssVar" class="sample-show-hide") test
     h1= __('m_connectionProblem')
     .navbar.navbar-inverse.navbar-fixed-top
       .container
